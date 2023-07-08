@@ -73,9 +73,9 @@ const lines: Omit<FancyLineProps, 'onReady'>[] = [
 export default function HomePage() {
   const [readyCount, setReadyCount] = React.useState(0);
   const [imageLoaded, setImageLoaded] = React.useState(false);
-  const isVisible = usePageVisibility();
+  const isPageVisible = usePageVisibility();
 
-  const isReady = imageLoaded && readyCount === lines.length && isVisible;
+  const isReady = imageLoaded && readyCount === lines.length && isPageVisible;
 
   return (
     <Layout>
@@ -84,7 +84,7 @@ export default function HomePage() {
 
       <main className={clsx(styles.Page)}>
         <Image
-          className={clsx(styles.Avatar, !isReady && '!opacity-0')}
+          className={clsx(styles.Avatar, isReady ? styles['fade-in'] : '!opacity-0')}
           src='/images/DSC07379-square.webp'
           width={2238}
           height={2338}
@@ -96,7 +96,7 @@ export default function HomePage() {
           Software Engineer from the Greater Seattle Area
         </div>
         <hr className={styles.Line} />
-        <div className={clsx(styles.LineContainer, !isReady && '!opacity-0')}>
+        <div className={clsx(styles.LineContainer, isReady ? styles['fade-in'] : '!opacity-0')}>
           {lines.map((line, index) => (
             <FancyLine
               className='mx-auto text-white'
