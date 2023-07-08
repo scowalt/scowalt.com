@@ -1,5 +1,5 @@
-.Paage {
-	@apply flex flex-col mx-auto my-auto h-screen justify-center;
+.Page {
+	@apply flex flex-col mx-auto my-auto h-screen justify-center gap-3;
 
 	font-family: "Lato";
 	background-color: #222;
@@ -19,4 +19,10 @@
 
 .SubTitle {
   @apply mx-auto text-white;
+}
+
+.Line {
+  @apply mx-auto;
+
+	width: 50%;
 }
