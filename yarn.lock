@@ -440,10 +440,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@corex/deepmerge@npm:^2.6.148":
-  version: 2.6.148
-  resolution: "@corex/deepmerge@npm:2.6.148"
-  checksum: b80b6b3e408901151de26e27b519a43cda1771a81e5390ff10cd6b47add0139bb315ca44112ff076d68ac887d7cfe237c9fb33868efb04839c4afb7c38864385
+"@corex/deepmerge@npm:^4.0.43":
+  version: 4.0.43
+  resolution: "@corex/deepmerge@npm:4.0.43"
+  checksum: f0103bfcfb9938ba478868fad522b018b92615ba186b0322c92aa1f57e539b87d4379d88fee3a404264a83bd4b13c384cfb07834377997d6d71cd840a880b4c4
   languageName: node
   linkType: hard
 
@@ -827,7 +827,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:13.4.9":
+"@next/env@npm:13.4.9, @next/env@npm:^13.4.3":
   version: 13.4.9
   resolution: "@next/env@npm:13.4.9"
   checksum: 625f01571ac5dabbb90567a987fdc16eca86cd9cfd592edabf7d3e3024972cd83564d53202293163851b85fa643f846a5757c8696a3c44315c98dae5b634f122
@@ -5148,7 +5148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:^1.2.0, minimist@npm:^1.2.6":
+"minimist@npm:^1.2.0, minimist@npm:^1.2.6, minimist@npm:^1.2.8":
   version: 1.2.8
   resolution: "minimist@npm:1.2.8"
   checksum: 75a6d645fb122dad29c06a7597bddea977258957ed88d7a6df59b5cd3fe4a527e253e9bbf2e783e4b73657f9098b96a5fe96ab8a113655d4109108577ecf85b0
@@ -5313,17 +5313,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-sitemap@npm:^2.5.28":
-  version: 2.5.28
-  resolution: "next-sitemap@npm:2.5.28"
+"next-sitemap@npm:^4.0.0":
+  version: 4.1.8
+  resolution: "next-sitemap@npm:4.1.8"
   dependencies:
-    "@corex/deepmerge": ^2.6.148
-    minimist: ^1.2.6
+    "@corex/deepmerge": ^4.0.43
+    "@next/env": ^13.4.3
+    fast-glob: ^3.2.12
+    minimist: ^1.2.8
   peerDependencies:
     next: "*"
   bin:
-    next-sitemap: bin/next-sitemap
-  checksum: 8d60a645df3e67da68a649bec0e839f4308124286456f051513ef74103bf6914ab370ebb2b57ff79db1f685988b6c35053fd6679324edd9a9426ca9f7d1c84bd
+    next-sitemap: bin/next-sitemap.mjs
+    next-sitemap-cjs: bin/next-sitemap.cjs
+  checksum: 787e7d1f310ad4caec6bb683db6d7c5b45cc71b729b59cd5e93b60bf72354eae04853c11fc88f1dafa23504083a945c6dd717c1f7d6f7501ba54111ef6e9c5ae
   languageName: node
   linkType: hard
 
@@ -6418,7 +6421,7 @@ __metadata:
     lint-staged: ^12.5.0
     next: ^13.4.4
     next-router-mock: ^0.9.0
-    next-sitemap: ^2.5.28
+    next-sitemap: ^4.0.0
     postcss: ^8.4.24
     prettier: ^2.8.8
     prettier-plugin-tailwindcss: ^0.3.0
