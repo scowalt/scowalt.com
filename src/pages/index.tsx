@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import styles from './index.module.scss';
+
 import Layout from '@/components/layout/Layout';
 import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
@@ -39,6 +41,7 @@ export default function HomePage() {
               </ArrowLink>
             </p>
 
+            <div className={styles.Container}>Foo</div>
             <ButtonLink className='mt-6' href='/components' variant='light'>
               See all components
             </ButtonLink>
