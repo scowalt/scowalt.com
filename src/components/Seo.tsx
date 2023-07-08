@@ -42,8 +42,12 @@ export default function Seo(props: SeoProps) {
   return (
     <Head>
       <title>{meta.title}</title>
-      {/* TODO DRY with SCSS*/}
-      <meta name="theme-color" content="#222" />
+      {/* TODO DRY with SCSS - status bar color on iOS*/}
+      {/* For some reason it doesn't match the background color on my iPhone. */}
+      {/* <meta name="theme-color" content="#1c1c1c" /> */}
+
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
       <meta name='robots' content={meta.robots} />
       <meta content={meta.description} name='description' />
       <meta property='og:url' content={`${meta.url}${router.asPath}`} />
@@ -79,10 +83,6 @@ export default function Seo(props: SeoProps) {
           />
         </>
       )}
-
-      <meta name='msapplication-TileColor' content='#ffffff' />
-      <meta name='msapplication-config' content='/favicon/browserconfig.xml' />
-      <meta name='theme-color' content='#ffffff' />
     </Head>
   );
 }

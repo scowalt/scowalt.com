@@ -1,14 +1,9 @@
 $background-color: #222;
 
 body {
-  @apply h-screen;
   margin: 0 0;
 }
 
 html, body {
   background-color: $background-color;
-}
-
-#__next {
-  @apply h-screen;
 }
