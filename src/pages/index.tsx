@@ -13,6 +13,8 @@ import {
 
 import styles from './index.module.scss';
 
+import { usePageVisibility } from '@/hooks/usePageVisibility';
+
 import { FancyLine, FancyLineProps } from '@/components/FancyLine';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -71,8 +73,9 @@ const lines: Omit<FancyLineProps, 'onReady'>[] = [
 export default function HomePage() {
   const [readyCount, setReadyCount] = React.useState(0);
   const [imageLoaded, setImageLoaded] = React.useState(false);
+  const isVisible = usePageVisibility();
 
-  const isReady = imageLoaded && readyCount === lines.length;
+  const isReady = imageLoaded && readyCount === lines.length && isVisible;
 
   return (
     <Layout>
