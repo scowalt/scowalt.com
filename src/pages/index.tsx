@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import * as React from 'react';
 import {
@@ -16,15 +17,7 @@ import { FancyLine, FancyLineProps } from '@/components/FancyLine';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 
-/**
- * SVGR Support
- * Caveat: No React Props Type.
- *
- * You can override the next-env if the type is important to you
- * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
- */
-
-const lines: FancyLineProps[] = [
+const lines: Omit<FancyLineProps, 'onReady'>[] = [
   {
     first: 'See',
     buttonText: 'LinkedIn',
@@ -76,29 +69,43 @@ const lines: FancyLineProps[] = [
 ];
 
 export default function HomePage() {
+  const [readyCount, setReadyCount] = React.useState(0);
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+
+  const isReady = imageLoaded && readyCount === lines.length;
+
   return (
     <Layout>
       {/* <Seo templateTitle='Home' /> */}
       <Seo />
 
-      <main className={styles.Page}>
+      <main className={clsx(styles.Page, !isReady && '!opacity-0')}>
         <Image
           className={styles.Avatar}
           src='/images/DSC07379-square.webp'
           width={2238}
           height={2338}
           alt='Scott Walters'
+          onLoad={() => setImageLoaded(true)}
         />
         <h3 className={styles.H3}>Scott Walters</h3>
         <div className={styles.SubTitle}>
           Software Engineer from the Greater Seattle Area
         </div>
         <hr className={styles.Line} />
-        <div className='flex flex-col gap-4'>
+        <div
+          className={clsx(
+            'flex flex-col gap-4',
+            readyCount !== lines.length && '!invisible'
+          )}
+        >
           {lines.map((line, index) => (
             <FancyLine
               className='mx-auto text-white'
               key={`button-row-${index}`}
+              onReady={() => {
+                setReadyCount((count) => count + 1);
+              }}
               {...line}
             />
           ))}

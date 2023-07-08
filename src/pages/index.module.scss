@@ -1,5 +1,20 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
 .Page {
 	@apply flex flex-col mx-auto my-auto h-screen justify-center gap-3;
+
+  @extend .fade-in;
 
 	background-color: #222;
 }
