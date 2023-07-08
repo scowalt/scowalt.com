@@ -79,26 +79,21 @@ export default function HomePage() {
       {/* <Seo templateTitle='Home' /> */}
       <Seo />
 
-      <main className={clsx(styles.Page, !isReady && '!opacity-0')}>
+      <main className={clsx(styles.Page)}>
         <Image
-          className={styles.Avatar}
+          className={clsx(styles.Avatar, !isReady && '!opacity-0')}
           src='/images/DSC07379-square.webp'
           width={2238}
           height={2338}
           alt='Scott Walters'
-          onLoad={() => setImageLoaded(true)}
+          onLoadingComplete={() => setImageLoaded(true)}
         />
         <h3 className={styles.H3}>Scott Walters</h3>
         <div className={styles.SubTitle}>
           Software Engineer from the Greater Seattle Area
         </div>
         <hr className={styles.Line} />
-        <div
-          className={clsx(
-            'flex flex-col gap-4',
-            readyCount !== lines.length && '!invisible'
-          )}
-        >
+        <div className={clsx(styles.LineContainer, !isReady && '!opacity-0')}>
           {lines.map((line, index) => (
             <FancyLine
               className='mx-auto text-white'

@@ -8,13 +8,12 @@
 }
 
 .fade-in {
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: fadeIn 1.0s ease-in-out;
+  animation-composition: both;
 }
 
 .Page {
 	@apply flex flex-col mx-auto my-auto h-screen justify-center gap-3;
-
-  @extend .fade-in;
 
 	background-color: #222;
 }
@@ -23,6 +22,7 @@
   @apply mx-auto;
 	border-radius: 50%;
 	max-width: 250px;
+  @extend .fade-in;
 }
 
 .H3 {
@@ -39,4 +39,9 @@
   @apply mx-auto;
 
 	width: 50%;
+}
+
+.LineContainer {
+  @apply flex flex-col gap-4;
+  @extend .fade-in;
 }
