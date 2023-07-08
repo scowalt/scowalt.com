@@ -1,7 +1,12 @@
+$background-color: #222;
+
 body {
   @apply h-screen;
-  background-color: #222;
   margin: 0 0;
+}
+
+html, body {
+  background-color: $background-color;
 }
 
 #__next {
