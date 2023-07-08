@@ -1,3 +1,22 @@
-.Container {
-  @apply bg-red-600;
+.Paage {
+	@apply flex flex-col mx-auto my-auto h-screen justify-center;
+
+	font-family: "Lato";
+	background-color: #222;
+}
+
+.Avatar {
+  @apply mx-auto;
+	border-radius: 50%;
+	max-width: 250px;
+}
+
+.H3 {
+  @apply mx-auto text-white my-0;
+
+	font-size: 32px;
+}
+
+.SubTitle {
+  @apply mx-auto text-white;
 }
