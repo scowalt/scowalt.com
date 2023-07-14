@@ -86,7 +86,7 @@ export default function HomePage() {
     ) {
       setIsReady(true);
     }
-  }, [imageLoaded, readyCount, isPageVisible]);
+  }, [imageLoaded, readyCount, isPageVisible, isReady]);
 
   return (
     <Layout>
