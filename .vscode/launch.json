@@ -1,0 +1,31 @@
+// .vscode/launch.json
+// has one configuration for the next.js dev server
+// and one for the chrome debugger
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Next: Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+
+      // include source maps for debugging
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./*": "${webRoot}/*",
+        "webpack:///src/*": "${webRoot}/*",
+        "webpack:///*": "*",
+        "webpack:///./~/*": "${webRoot}/node_modules/*"
+      }
+    },
+    {
+      "name": "Next: Node",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "next",
+      "runtimeArgs": ["dev"]
+    }
+  ]
+}

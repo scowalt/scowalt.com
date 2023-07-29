@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import * as React from 'react';
 import {
-  FaAt,
   FaEnvelope,
   FaGithub,
   FaLinkedin,
@@ -54,13 +53,13 @@ const lines: Omit<FancyLineProps, 'onReady'>[] = [
     last: ',',
     Icon: FaTwitter,
   },
-  {
-    first: '(and now ',
-    href: 'https://www.threads.net/@scowalt',
-    buttonText: 'Threads',
-    last: '),',
-    Icon: FaAt,
-  },
+  // {
+  //   first: '(and now ',
+  //   href: 'https://www.threads.net/@scowalt',
+  //   buttonText: 'Threads',
+  //   last: '),',
+  //   Icon: FaAt,
+  // },
   {
     first: "but it's better to use",
     href: 'mailto:me@scowalt.com',

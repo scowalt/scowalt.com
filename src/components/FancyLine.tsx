@@ -72,7 +72,7 @@ export const FancyLine = ({
       </div>
       <a className={styles.Button} ref={buttonRef} href={href}>
         <span className={styles.CenteredLabel}>
-          <Icon /> <span className='mb-[-1px]'>{buttonText}</span>
+          <Icon /> <span>{buttonText}</span>
         </span>
       </a>
       <div className={styles.IgnoreText} ref={lastRef}>
