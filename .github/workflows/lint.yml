@@ -23,6 +23,7 @@ jobs:
         with:
           node-version-file: '.node-version'
           cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
@@ -42,6 +43,7 @@ jobs:
         with:
           node-version-file: '.node-version'
           cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
@@ -64,6 +66,7 @@ jobs:
         with:
           node-version-file: '.node-version'
           cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
