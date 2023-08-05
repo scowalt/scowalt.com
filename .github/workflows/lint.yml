@@ -46,6 +46,9 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
 
+      - name: 📝 Generate type declarations from next
+        run: yarn next build
+
       - name: 🔎 Type check
         run: yarn typecheck
 
