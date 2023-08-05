@@ -1,9 +1,11 @@
 import clsx from 'clsx';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import * as React from 'react';
 import {
   FaEnvelope,
   FaGithub,
+  FaInstagram,
   FaLinkedin,
   FaPen,
   FaTwitter,
@@ -14,7 +16,7 @@ import styles from './index.module.scss';
 
 import { usePageVisibility } from '@/hooks/usePageVisibility';
 
-import { FancyLine, FancyLineProps } from '@/components/FancyLine';
+import type { FancyLineProps } from '@/components/FancyLine';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 
@@ -43,11 +45,11 @@ const lines: Omit<FancyLineProps, 'onReady'>[] = [
     first: 'I post music on',
     buttonText: 'YouTube',
     Icon: FaYoutube,
-    last: '.',
+    last: ',',
     href: 'https://www.youtube.com/channel/UCPnjpoktsIYahNqnTAVPagA',
   },
   {
-    first: 'I infrequently use',
+    first: 'occasional thoughts on',
     href: 'https://twitter.com/scowalt',
     buttonText: 'Twitter',
     last: ',',
@@ -61,13 +63,26 @@ const lines: Omit<FancyLineProps, 'onReady'>[] = [
   //   Icon: FaAt,
   // },
   {
-    first: "but it's better to use",
+    first: 'and pictures of food on',
+    href: 'https://www.instagram.com/scowalt/',
+    buttonText: 'Instagram',
+    last: '.',
+    Icon: FaInstagram,
+  },
+  {
+    first: "It's best to use",
     href: 'mailto:me@scowalt.com',
     buttonText: 'Email',
     last: 'to contact me.',
     Icon: FaEnvelope,
   },
 ];
+
+// Use next/dynamic to load FancyLine component dynamically
+const FancyLine = dynamic(
+  () => import('@/components/FancyLine').then((mod) => mod.FancyLine),
+  { ssr: false },
+);
 
 export default function HomePage() {
   const [readyCount, setReadyCount] = React.useState(0);
