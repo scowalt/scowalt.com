@@ -81,7 +81,7 @@ const lines: Omit<FancyLineProps, 'onReady'>[] = [
 // Use next/dynamic to load FancyLine component dynamically
 const FancyLine = dynamic(
   () => import('@/components/FancyLine').then((mod) => mod.FancyLine),
-  { ssr: false },
+  { ssr: false, loading: () => <div className='h-6' /> }, // TODO this height could change!
 );
 
 export default function HomePage() {
