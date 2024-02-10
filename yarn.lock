@@ -3130,12 +3130,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-simple-import-sort@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "eslint-plugin-simple-import-sort@npm:11.0.0"
+"eslint-plugin-simple-import-sort@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "eslint-plugin-simple-import-sort@npm:12.0.0"
   peerDependencies:
     eslint: ">=5.0.0"
-  checksum: 10/f443a005e7ae769f64e1d3bc3f69f342256b56b3d20557b8e039e494f7819b4951c35e6b32180a9fca59878fa71fdbebe0b22feecd078853920cd859c29c5542
+  checksum: 10/94d15a6b287b3036c402de4e034f2a4c950dc04be3a85c699f481327344bdecdeb659e86cfdf2dd69861b7044e10a4bef009029c107896ed1cf1c2badd7cdbce
   languageName: node
   linkType: hard
 
@@ -6742,7 +6742,7 @@ __metadata:
     eslint: "npm:^8.42.0"
     eslint-config-next: "npm:^14.0.0"
     eslint-config-prettier: "npm:^9.0.0"
-    eslint-plugin-simple-import-sort: "npm:^11.0.0"
+    eslint-plugin-simple-import-sort: "npm:^12.0.0"
     eslint-plugin-unused-imports: "npm:^3.0.0"
     jest: "npm:^29.6.1"
     jest-environment-jsdom: "npm:^29.6.1"
