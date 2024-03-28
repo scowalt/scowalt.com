@@ -5664,12 +5664,12 @@ __metadata:
   linkType: hard
 
 "next-router-mock@npm:^0.9.0":
-  version: 0.9.12
-  resolution: "next-router-mock@npm:0.9.12"
+  version: 0.9.13
+  resolution: "next-router-mock@npm:0.9.13"
   peerDependencies:
     next: ">=10.0.0"
     react: ">=17.0.0"
-  checksum: 10/ff9bc346e1822bbc1bbaf20b9e46de254edcad262e1b23780bb8c3a2a28217dd20a034b863dae2da60b8f073a98e6981f097316a46b177743e041046597c1b86
+  checksum: 10/582858b4521b987ff7299d97b81b526ba5debdb93b7ada83a595927ca1138082e902ff8dbb7c6cb9db79d65b1a7aa4d86fbbbf24ea73a033d317d964ca3ea95b
   languageName: node
   linkType: hard
 
