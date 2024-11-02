@@ -113,7 +113,7 @@ export default function HomePage() {
             styles.Avatar,
             isReady ? styles['fade-in'] : '!opacity-0',
           )}
-          src='/images/DSC07379-square.webp'
+          src='/images/me-2.png'
           width={2238}
           height={2338}
           alt='Scott Walters'
