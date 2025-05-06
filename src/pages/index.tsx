@@ -121,7 +121,7 @@ export default function HomePage() {
         />
         <h3 className={styles.H3}>Scott Walters</h3>
         <div className={styles.SubTitle}>
-          Software Engineer from the Greater Seattle Area
+          Software Engineer from the Greater Chicago Area
         </div>
         <hr className={styles.Line} />
         <div
