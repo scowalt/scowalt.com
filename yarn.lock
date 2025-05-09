@@ -6481,13 +6481,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-router-mock@npm:^0.9.0":
-  version: 0.9.13
-  resolution: "next-router-mock@npm:0.9.13"
+"next-router-mock@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "next-router-mock@npm:1.0.0"
   peerDependencies:
     next: ">=10.0.0"
     react: ">=17.0.0"
-  checksum: 10/582858b4521b987ff7299d97b81b526ba5debdb93b7ada83a595927ca1138082e902ff8dbb7c6cb9db79d65b1a7aa4d86fbbbf24ea73a033d317d964ca3ea95b
+  checksum: 10/e979d266b2427b203e5af428e88c5851420a5c9a8ff1cac9712f0bd1149c7bd164a2eeafcfcb293320d3220b03791433bc1c9d424286d0bf8309b930abe97f09
   languageName: node
   linkType: hard
 
@@ -7751,7 +7751,7 @@ __metadata:
     jest: "npm:^29.6.1"
     jest-environment-jsdom: "npm:^29.6.1"
     next: "npm:^15.0.0"
-    next-router-mock: "npm:^0.9.0"
+    next-router-mock: "npm:^1.0.0"
     next-sitemap: "npm:^4.0.0"
     postcss: "npm:^8.4.24"
     prettier: "npm:^3.0.0"
