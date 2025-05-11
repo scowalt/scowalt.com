@@ -12,8 +12,7 @@ import {
   FaYoutube,
 } from 'react-icons/fa';
 
-import styles from './index.module.scss';
-
+// import styles from './index.module.scss';
 import { usePageVisibility } from '@/hooks/usePageVisibility';
 
 import type { FancyLineProps } from '@/components/FancyLine';
@@ -107,11 +106,15 @@ export default function HomePage() {
       {/* <Seo templateTitle='Home' /> */}
       <Seo />
 
-      <main className={clsx(styles.Page)}>
+      <main className={clsx(
+        'flex flex-col mx-auto my-auto justify-center gap-3 h-screen',
+        'bg-page-dark max-h-webkit-fill' // Custom global utilities
+      )}>
         <Image
           className={clsx(
-            styles.Avatar,
-            isReady ? styles['fade-in'] : '!opacity-0',
+            'mx-auto rounded-avatar', // Tailwind and custom global utility
+            'max-w-[250px]', // Tailwind arbitrary value for max-width
+            isReady ? 'fade-in' : 'opacity-0!', // Global animation and Tailwind
           )}
           src='/images/me-2.png'
           width={2238}
@@ -119,15 +122,21 @@ export default function HomePage() {
           alt='Scott Walters'
           onLoadingComplete={() => setImageLoaded(true)}
         />
-        <h3 className={styles.H3}>Scott Walters</h3>
-        <div className={styles.SubTitle}>
+        <h3 className={clsx(
+          'mx-auto text-white my-0 text-h3-custom' // Tailwind and custom global utility
+        )}>Scott Walters</h3>
+        <div className={clsx(
+          'mx-auto text-white' // Tailwind
+        )}>
           Software Engineer from the Greater Chicago Area
         </div>
-        <hr className={styles.Line} />
+        <hr className={clsx(
+          'mx-auto w-line-separator' // Tailwind and custom global utility
+        )} />
         <div
           className={clsx(
-            styles.LineContainer,
-            isReady ? styles['fade-in'] : '!opacity-0',
+            'flex flex-col gap-4', // Tailwind
+            isReady ? 'fade-in' : 'opacity-0!', // Global animation and Tailwind
           )}
         >
           {lines.map((line, index) => (

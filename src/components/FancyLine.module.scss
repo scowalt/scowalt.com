@@ -1,7 +1,3 @@
-.Line {
-  @apply flex flex-row justify-center;
-}
-
 .IgnoreText {
   position: absolute;
 }
@@ -15,20 +11,5 @@
     margin-right: 0.375em;
     // padding-top: 1px;
     // margin-bottom: -1px;
-  }
-}
-
-$buttonMarginPx: 8px;
-
-.Button {
-  margin: 0px $buttonMarginPx;
-
-  color: #7687ff;
-
-  /** don't underline links */
-  text-decoration: none;
-
-  &:hover {
-    @apply text-slate-300;
   }
 }

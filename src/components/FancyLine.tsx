@@ -66,11 +66,18 @@ export const FancyLine = ({
   }, []);
 
   return (
-    <div {...restOfProps} className={clsx(styles.Line, restOfProps.className)}>
+    <div {...restOfProps} className={clsx('flex flex-row justify-center', restOfProps.className)}>
       <div className={styles.IgnoreText} ref={firstRef}>
         {first}
       </div>
-      <a className={styles.Button} ref={buttonRef} href={href}>
+      <a 
+        className={clsx(
+          // styles.Button, // We will remove this in the next step when editing the .scss file
+          'mx-2 text-[#7687ff] no-underline hover:text-slate-300'
+        )} 
+        ref={buttonRef} 
+        href={href}
+      >
         <span className={styles.CenteredLabel}>
           <Icon /> <span>{buttonText}</span>
         </span>
