@@ -33,6 +33,7 @@ module.exports = defineConfig([
                 ...globals.node,
                 React: true,
                 JSX: true,
+                jest: true,
             },
         },
 
