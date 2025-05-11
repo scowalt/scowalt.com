@@ -46,7 +46,7 @@ module.exports = defineConfig([
             "no-unused-vars": "off",
             "no-console": "warn",
             "@typescript-eslint/explicit-module-boundary-types": "off",
-            "react/no-unescaped-entities": "off",
+            "react/no-unescaped-entities": "error",
             "react/display-name": "off",
             "jsx-a11y/alt-text": "off",
 
