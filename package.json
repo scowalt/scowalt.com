@@ -28,6 +28,9 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.26.0",
+    "@percy/cli": "^1.30.10",
+    "@percy/playwright": "^1.0.8",
+    "@playwright/test": "^1.52.0",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/postcss": "^4.1.6",
     "@testing-library/dom": "^10.4.0",
@@ -47,6 +50,7 @@
     "jest-environment-jsdom": "^29.6.1",
     "next-router-mock": "^1.0.0",
     "next-sitemap": "^4.0.0",
+    "playwright": "^1.52.0",
     "postcss": "^8.4.24",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.6.11",

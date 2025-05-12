@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+ 
 const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
@@ -15,6 +15,12 @@ const customJestConfig = {
   moduleDirectories: ['node_modules', '<rootDir>/'],
 
   testEnvironment: 'jest-environment-jsdom',
+
+  testPathIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/.next/',
+    '<rootDir>/tests/e2e/', // Ignore Playwright tests
+  ],
 
   /**
    * Absolute imports and Module Path Aliases

@@ -1,0 +1,80 @@
+name: Visual Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  percy_visual_tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version' # Use .node-version file
+          cache: 'yarn'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v4
+        id: yarn-cache # use this to check for `cache-hit` ==> if: steps.yarn-cache.outputs.cache-hit != 'true'
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.node-version') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps # --with-deps installs OS dependencies
+
+      - name: Build Next.js Application
+        run: yarn build
+        env:
+          # Add any build-time environment variables your Next.js app might need
+          # NEXT_PUBLIC_SOME_VARIABLE: ${{ secrets.SOME_VARIABLE_FOR_BUILD }}
+          NODE_ENV: production
+
+      - name: Start Next.js Application
+        run: yarn start --port 2376 &
+        env:
+          PORT: 2376 # Explicitly set port for `next start`
+          NODE_ENV: production
+          # Add any run-time environment variables your Next.js app might need
+          # EXAMPLE_API_KEY: ${{ secrets.EXAMPLE_API_KEY_RUNTIME }}
+
+      - name: Wait for Application to Start
+        run: |
+          timeout 30s bash -c 'until curl -sSf http://localhost:2376 > /dev/null; do echo "Waiting for app to start..."; sleep 2; done'
+          echo "Application started!"
+
+      - name: Run Percy Visual Tests
+        run: npx percy exec -- npx playwright test tests/e2e/home.spec.ts
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Percy uses this for richer PR integration
+          # Ensure the tests run against the correct URL if it's not localhost in CI for some reason
+          # BASE_URL: http://localhost:2376
+
+      # Optional: Upload Playwright report if tests fail (for debugging non-visual aspects)
+      - name: Upload Playwright report
+        if: always() # Run this step even if previous steps fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
