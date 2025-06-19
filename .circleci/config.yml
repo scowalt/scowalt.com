@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: "Install bun"
-          command: "npm install -g bun"
+          command: "curl -fsSL https://bun.sh/install | bash && echo 'export PATH=\"$HOME/.bun/bin:$PATH\"' >> $BASH_ENV"
       - run:
           name: "Install Dependencies"
           command: "bun install"
@@ -26,7 +26,7 @@ jobs:
       - checkout
       - run:
           name: "Install bun"
-          command: "npm install -g bun"
+          command: "curl -fsSL https://bun.sh/install | bash && echo 'export PATH=\"$HOME/.bun/bin:$PATH\"' >> $BASH_ENV"
       - run:
           name: "Install Dependencies"
           command: "bun install"
