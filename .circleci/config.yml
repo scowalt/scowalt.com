@@ -1,0 +1,54 @@
+version: 2.1
+
+jobs:
+  deploy-production:
+    docker:
+      - image: cimg/node:18.17
+    steps:
+      - checkout
+      - run:
+          name: "Install bun"
+          command: "npm install -g bun"
+      - run:
+          name: "Install Dependencies"
+          command: "bun install"
+      - run:
+          name: "Build"
+          command: "bun run build"
+      - run:
+          name: "Deploy to Cloudflare Pages"
+          command: "npx wrangler pages deploy dist --branch=main"
+
+  deploy-preview:
+    docker:
+      - image: cimg/node:18.17
+    steps:
+      - checkout
+      - run:
+          name: "Install bun"
+          command: "npm install -g bun"
+      - run:
+          name: "Install Dependencies"
+          command: "bun install"
+      - run:
+          name: "Build"
+          command: "bun run build"
+      - run:
+          name: "Deploy Preview to Cloudflare Pages"
+          command: "npx wrangler pages deploy dist --branch=$CIRCLE_BRANCH"
+
+workflows:
+  deploy:
+    jobs:
+      - deploy-production:
+          context: cloudflare-production
+          filters:
+            branches:
+              only:
+                - main
+      - deploy-preview:
+          context: cloudflare-preview
+          filters:
+            branches:
+              ignore:
+                - main 
