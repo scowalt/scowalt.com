@@ -8,13 +8,13 @@ jobs:
       - checkout
       - run:
           name: "Install bun"
-          command: "curl -fsSL https://bun.sh/install | bash && echo 'export PATH=\"$HOME/.bun/bin:$PATH\"' >> $BASH_ENV"
+          command: "curl -fsSL https://bun.sh/install | bash && echo 'export PATH=\"$HOME/.bun/bin:$PATH\"' >> $BASH_ENV && source $BASH_ENV"
       - run:
           name: "Install Dependencies"
-          command: "bun install"
+          command: "source $BASH_ENV && bun install"
       - run:
           name: "Build"
-          command: "bun run build"
+          command: "source $BASH_ENV && bun run build"
       - run:
           name: "Deploy to Cloudflare Pages"
           command: "npx wrangler pages deploy dist --branch=main"
@@ -26,13 +26,13 @@ jobs:
       - checkout
       - run:
           name: "Install bun"
-          command: "curl -fsSL https://bun.sh/install | bash && echo 'export PATH=\"$HOME/.bun/bin:$PATH\"' >> $BASH_ENV"
+          command: "curl -fsSL https://bun.sh/install | bash && echo 'export PATH=\"$HOME/.bun/bin:$PATH\"' >> $BASH_ENV && source $BASH_ENV"
       - run:
           name: "Install Dependencies"
-          command: "bun install"
+          command: "source $BASH_ENV && bun install"
       - run:
           name: "Build"
-          command: "bun run build"
+          command: "source $BASH_ENV && bun run build"
       - run:
           name: "Deploy Preview to Cloudflare Pages"
           command: "npx wrangler pages deploy dist --branch=$CIRCLE_BRANCH"
