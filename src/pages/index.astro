@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<Layout title="Scott Walters">
+	<main class="flex flex-col items-center justify-center min-h-screen text-white text-center p-4">
+		<img
+			src="https://avatars.githubusercontent.com/u/4656229?v=4"
+			alt="Scott Walters"
+			class="rounded-full w-48 h-48 mb-6"
+		/>
+		<h1 class="text-5xl font-bold mb-2">Scott Walters</h1>
+		<p class="text-xl mb-6">
+			Software Engineer from the Greater Chicago Area
+		</p>
+		<hr class="w-1/2 md:w-1/3 lg:w-1/4 mb-6" />
+
+		<div class="space-y-4 text-lg">
+			<p class="flex items-center justify-center">
+				See&nbsp;
+				<a href="https://www.linkedin.com/in/scowalt/" target="_blank" rel="noopener noreferrer" class="flex items-center text-blue-300 hover:underline">
+					<Icon name="cib:linkedin-in" class="w-5 h-5 mr-2" />LinkedIn
+				</a>
+				&nbsp;for my resume.
+			</p>
+			<p class="flex items-center justify-center">
+				I code side projects at&nbsp;
+				<a href="https://github.com/scowalt" target="_blank" rel="noopener noreferrer" class="flex items-center text-blue-300 hover:underline">
+					<Icon name="cib:github" class="w-5 h-5 mr-2" />Github
+				</a>
+			</p>
+			<p class="flex items-center justify-center">
+				and use my&nbsp;
+				<a href="https://dev.to/scowalt" target="_blank" rel="noopener noreferrer" class="flex items-center text-blue-300 hover:underline">
+					<Icon name="mdi:pencil" class="w-5 h-5 mr-2" />Dev Blog
+				</a>
+				&nbsp;to write about them.
+			</p>
+			<p class="flex items-center justify-center">
+				I post music on&nbsp;
+				<a href="https://www.youtube.com/channel/UC1Y_1-9Q2n0g_iA-sS_0g6Q" target="_blank" rel="noopener noreferrer" class="flex items-center text-blue-300 hover:underline">
+					<Icon name="cib:youtube" class="w-5 h-5 mr-2" />YouTube
+				</a>
+				,
+			</p>
+			<p class="flex items-center justify-center">
+				occasional thoughts on&nbsp;
+				<a href="https://twitter.com/scowalt" target="_blank" rel="noopener noreferrer" class="flex items-center text-blue-300 hover:underline">
+					<Icon name="cib:twitter" class="w-5 h-5 mr-2" />Twitter
+				</a>
+				,
+			</p>
+			<p class="flex items-center justify-center">
+				and pictures of food on&nbsp;
+				<a href="https://www.instagram.com/scowalt/" target="_blank" rel="noopener noreferrer" class="flex items-center text-blue-300 hover:underline">
+					<Icon name="cib:instagram" class="w-5 h-5 mr-2" />Instagram
+				</a>
+				.
+			</p>
+			<p class="flex items-center justify-center">
+				It's best to use&nbsp;
+				<a href="mailto:scott@scowalt.com" class="flex items-center text-blue-300 hover:underline">
+					<Icon name="mdi:envelope" class="w-5 h-5 mr-2" />Email
+				</a>
+				&nbsp;to contact me.
+			</p>
+		</div>
+	</main>
+</Layout>
