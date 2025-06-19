@@ -1,0 +1,35 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	first?: string;
+	last?: string;
+	buttonText: string;
+	href: string;
+	iconName: string;
+}
+
+const { first, last, buttonText, href, iconName } = Astro.props;
+const isExternal = href.startsWith('http');
+---
+<div class="fancy-line-grid">
+	<span class="text-right">{first}</span>
+	<a 
+		href={href} 
+		target={isExternal ? '_blank' : undefined}
+		rel={isExternal ? 'noopener noreferrer' : undefined}
+		class="flex items-center hover:underline whitespace-nowrap"
+	>
+		<Icon name={iconName} class="w-4 h-4 mr-2" />{buttonText}
+	</a>
+	<span class="text-left">{last}</span>
+</div>
+
+<style>
+	.fancy-line-grid {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		gap: 0.5rem;
+		align-items: center;
+	}
+</style> 
