@@ -28,4 +28,3 @@ To deploy this site to Cloudflare Pages, you'll need to generate an API token wi
 7. Click "Continue to summary" and then "Create Token"
 
 The token should be added to your CircleCI environment variables as `CLOUDFLARE_API_TOKEN`.
-
