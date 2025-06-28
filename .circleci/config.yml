@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   deploy-production:
     docker:
-      - image: cimg/node:20.11
+      - image: cimg/node:20.11.1
     steps:
       - checkout
       - run:
@@ -24,7 +24,7 @@ jobs:
 
   deploy-preview:
     docker:
-      - image: cimg/node:20.11
+      - image: cimg/node:20.11.1
     steps:
       - checkout
       - run:
