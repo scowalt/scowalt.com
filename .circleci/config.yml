@@ -33,9 +33,3 @@ workflows:
             branches:
               only:
                 - main
-      - deploy-preview:
-          context: cloudflare-preview
-          filters:
-            branches:
-              ignore:
-                - main 
