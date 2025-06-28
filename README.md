@@ -21,6 +21,7 @@ To deploy this site to Cloudflare Pages, you'll need to generate an API token wi
 3. Use "Custom token" template
 4. Configure the token with these permissions:
    - **Account** - `Cloudflare Pages:Edit`
+   - **User** - `User Details:Read`
    - **Zone** - `Zone:Read` (for your domain)
    - **Zone** - `DNS:Read` (for your domain)
 5. Set Account Resources to "Include - All accounts" or your specific account
