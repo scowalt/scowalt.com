@@ -3,11 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "bunx --bun astro dev",
-    "start": "bunx --bun astro dev",
-    "build": "bunx --bun astro build",
-    "preview": "bunx --bun astro preview",
-    "astro": "bunx --bun astro"
+    "dev": "bun x astro dev",
+    "start": "bun x astro dev",
+    "build": "bun x astro build",
+    "preview": "bun x astro preview",
+    "astro": "bun x astro"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.5",

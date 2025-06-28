@@ -3,12 +3,17 @@ version: 2.1
 jobs:
   deploy-production:
     docker:
-      - image: cimg/node:18.17
+      - image: cimg/node:20.11
     steps:
       - checkout
       - run:
           name: "Install bun"
-          command: "curl -fsSL https://bun.sh/install | bash && echo 'export PATH=\"$HOME/.bun/bin:$PATH\"' >> $BASH_ENV && source $BASH_ENV"
+          command: |
+            curl -fsSL https://bun.sh/install | bash
+            echo 'export BUN_INSTALL="$HOME/.bun"' >> $BASH_ENV
+            echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> $BASH_ENV
+            source $BASH_ENV
+            bun --version
       - run:
           name: "Install Dependencies"
           command: "source $BASH_ENV && bun install"
@@ -21,12 +26,17 @@ jobs:
 
   deploy-preview:
     docker:
-      - image: cimg/node:18.17
+      - image: cimg/node:20.11
     steps:
       - checkout
       - run:
           name: "Install bun"
-          command: "curl -fsSL https://bun.sh/install | bash && echo 'export PATH=\"$HOME/.bun/bin:$PATH\"' >> $BASH_ENV && source $BASH_ENV"
+          command: |
+            curl -fsSL https://bun.sh/install | bash
+            echo 'export BUN_INSTALL="$HOME/.bun"' >> $BASH_ENV
+            echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> $BASH_ENV
+            source $BASH_ENV
+            bun --version
       - run:
           name: "Install Dependencies"
           command: "source $BASH_ENV && bun install"
