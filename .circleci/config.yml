@@ -22,7 +22,7 @@ jobs:
           command: "source $BASH_ENV && bun run build"
       - run:
           name: "Deploy to Cloudflare Pages"
-          command: "npx wrangler pages deploy dist --branch=main"
+          command: "npx wrangler pages deploy dist --project-name=scowalt-com"
 
   deploy-preview:
     docker:
@@ -45,7 +45,7 @@ jobs:
           command: "source $BASH_ENV && bun run build"
       - run:
           name: "Deploy Preview to Cloudflare Pages"
-          command: "npx wrangler pages deploy dist --branch=$CIRCLE_BRANCH"
+          command: "npx wrangler pages deploy dist --project-name=scowalt-com"
 
 workflows:
   deploy:
