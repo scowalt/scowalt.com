@@ -7,7 +7,7 @@ This is an Astro site deployed to Cloueflare pages that will act as my personal 
 - Astro
 - Tailwind
 - Cloudflare Pages
-- CicleCI
+- GitHub Actions
 - Renovate
 
 ## Deployment Setup
@@ -29,6 +29,14 @@ To deploy this site to Cloudflare Pages, you'll need to generate an API token wi
 6. Set Zone Resources to "Include - Specific zone" and select your domain
 7. Click "Continue to summary" and then "Create Token"
 
-The token should be added to your CircleCI environment variables as `CLOUDFLARE_API_TOKEN`.
+Add these secrets to your GitHub repository:
 
-You'll also need to set `CLOUDFLARE_ACCOUNT_ID` in CircleCI with your Cloudflare account ID (found in the right sidebar of your Cloudflare dashboard).
+- `CLOUDFLARE_API_TOKEN`: The API token you generated above
+- `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare account ID (found in the right sidebar of your Cloudflare dashboard)
+
+## Deployment
+
+The site automatically deploys via GitHub Actions:
+
+- **Production**: Pushes to `main` branch deploy to production
+- **Preview**: Pull requests deploy preview sites with unique URLs
