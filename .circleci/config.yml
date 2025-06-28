@@ -22,7 +22,7 @@ jobs:
           command: "source $BASH_ENV && bun run build"
       - run:
           name: "Deploy to Cloudflare Pages"
-          command: "npx wrangler pages deploy --env=production"
+          command: "npx wrangler pages deploy --project-name=scowalt-com --branch=main"
 
 workflows:
   deploy:
