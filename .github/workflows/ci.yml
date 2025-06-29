@@ -47,10 +47,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Read Terraform version
+        id: tfversion
+        run: echo "version=$(cat terraform/.terraform-version)" >> $GITHUB_OUTPUT
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: ~1.5
+          terraform_version: ${{ steps.tfversion.outputs.version }}
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v4
