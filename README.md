@@ -40,3 +40,13 @@ bun run dev
 # Build for production
 bun run build
 ```
+
+## Graphite CLI
+
+This repository is configured for Graphite CLI stacked development:
+
+```bash
+# Initialize Graphite in this repo
+gt init
+# Choose "main" as trunk branch when prompted
+```
