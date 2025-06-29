@@ -37,7 +37,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist
+          command: pages deploy dist --project-name=scowalt-com
 
   deploy-preview:
     if: github.event_name == 'pull_request'
@@ -68,4 +68,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist
+          command: pages deploy dist --project-name=scowalt-com-preview

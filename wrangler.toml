@@ -1,2 +1,5 @@
 name = "scowalt-com"
 pages_build_output_dir = "./dist"
+
+[env.preview]
+name = "scowalt-com-preview"
