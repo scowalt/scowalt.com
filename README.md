@@ -12,7 +12,47 @@ This is an Astro site deployed to Cloueflare pages that will act as my personal 
 
 ## Deployment Setup
 
-### Infisical Setup (Secrets Management)
+You have two options for setting up Cloudflare Pages deployment:
+
+### Option A: Terraform (Recommended)
+
+This approach uses Infrastructure as Code to create the Cloudflare Pages projects:
+
+1. **Install Terraform**: [Download Terraform](https://www.terraform.io/downloads.html)
+
+2. **Login to Infisical CLI**:
+
+   ```bash
+   # Install Infisical CLI if needed
+   npm install -g @infisical/cli
+   
+   # Login to your account
+   infisical login
+   ```
+
+3. **Deploy infrastructure**:
+
+   ```bash
+   cd infrastructure/
+   
+   # Initialize Terraform
+   terraform init
+   
+   # Run Terraform with Infisical secrets injected
+   infisical run --env=prod -- ./deploy.sh plan
+   infisical run --env=prod -- ./deploy.sh apply
+   ```
+
+4. **Connect GitHub manually**:
+   - Go to [Cloudflare Pages dashboard](https://dash.cloudflare.com/pages)
+   - Find your `scowalt-com` project and click "Connect to Git"
+   - Connect your GitHub repository
+   
+5. **Add secrets to GitHub**:
+   - Go to your repo Settings → Secrets and variables → Actions
+   - Add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
+
+### Option B: Manual Setup with Infisical (Secrets Management)
 
 This project uses [Infisical](https://infisical.com/) for centralized secrets management. Choose **Option A** (simpler) or **Option B** (more advanced):
 
