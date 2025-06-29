@@ -12,5 +12,5 @@ export default defineConfig({
   integrations: [icon()],
   vite: {
     plugins: [tailwindcss()],
-  }
+  },
 });

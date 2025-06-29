@@ -3,8 +3,13 @@ resource "github_branch_protection" "main" {
   pattern       = "main"
 
   required_status_checks {
-    strict   = true
-    contexts = ["Workers Builds: scowalt-com"]
+    strict = true
+    contexts = [
+      "Workers Builds: scowalt-com",
+      "Code Quality & Tests",
+      "Terraform Validation",
+      "Security Scanning"
+    ]
   }
 
   required_pull_request_reviews {
@@ -17,9 +22,9 @@ resource "github_branch_protection" "main" {
   enforce_admins = false
 
   allows_deletions                = false
-  allows_force_pushes            = false
-  require_signed_commits         = false
+  allows_force_pushes             = false
+  require_signed_commits          = false
   require_conversation_resolution = false
-  required_linear_history        = false
-  lock_branch                    = false
+  required_linear_history         = false
+  lock_branch                     = false
 }

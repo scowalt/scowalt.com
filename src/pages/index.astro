@@ -3,83 +3,83 @@ import Layout from '../layouts/Layout.astro';
 import FancyLine from '../components/FancyLine.astro';
 
 const links = [
-	{
-		first: 'See',
-		href: 'https://www.linkedin.com/in/scowalt/',
-		iconName: 'cib:linkedin-in',
-		buttonText: 'LinkedIn',
-		last: 'for my resume.',
-	},
-	{
-		first: 'I code side projects at',
-		href: 'https://github.com/scowalt',
-		iconName: 'cib:github',
-		buttonText: 'Github',
-		last: '.',
-	},
-	// {
-	// 	first: 'and use my',
-	// 	href: 'https://devblog.scowalt.com/',
-	// 	iconName: 'mdi:pencil',
-	// 	buttonText: 'Dev Blog',
-	// 	last: 'to write about them.',
-	// },
-	{
-		first: 'I post music on',
-		href: 'https://www.youtube.com/channel/UCPnjpoktsIYahNqnTAVPagA',
-		iconName: 'cib:youtube',
-		buttonText: 'YouTube',
-		last: ',',
-	},
-	{
-		first: 'occasional thoughts on',
-		href: 'https://twitter.com/scowalt',
-		iconName: 'cib:twitter',
-		buttonText: 'Twitter',
-		last: ',',
-	},
-	{
-		first: 'and pictures of food on',
-		href: 'https://www.instagram.com/scowalt/',
-		iconName: 'cib:instagram',
-		buttonText: 'Instagram',
-		last: '.',
-	},
-	{
-		first: "It's best to use",
-		href: 'mailto:me@scowalt.com',
-		iconName: 'mdi:envelope',
-		buttonText: 'Email',
-		last: 'to contact me.',
-	},
+  {
+    first: 'See',
+    href: 'https://www.linkedin.com/in/scowalt/',
+    iconName: 'cib:linkedin-in',
+    buttonText: 'LinkedIn',
+    last: 'for my resume.',
+  },
+  {
+    first: 'I code side projects at',
+    href: 'https://github.com/scowalt',
+    iconName: 'cib:github',
+    buttonText: 'Github',
+    last: '.',
+  },
+  // {
+  // 	first: 'and use my',
+  // 	href: 'https://devblog.scowalt.com/',
+  // 	iconName: 'mdi:pencil',
+  // 	buttonText: 'Dev Blog',
+  // 	last: 'to write about them.',
+  // },
+  {
+    first: 'I post music on',
+    href: 'https://www.youtube.com/channel/UCPnjpoktsIYahNqnTAVPagA',
+    iconName: 'cib:youtube',
+    buttonText: 'YouTube',
+    last: ',',
+  },
+  {
+    first: 'occasional thoughts on',
+    href: 'https://twitter.com/scowalt',
+    iconName: 'cib:twitter',
+    buttonText: 'Twitter',
+    last: ',',
+  },
+  {
+    first: 'and pictures of food on',
+    href: 'https://www.instagram.com/scowalt/',
+    iconName: 'cib:instagram',
+    buttonText: 'Instagram',
+    last: '.',
+  },
+  {
+    first: "It's best to use",
+    href: 'mailto:me@scowalt.com',
+    iconName: 'mdi:envelope',
+    buttonText: 'Email',
+    last: 'to contact me.',
+  },
 ];
 ---
 
 <Layout title="Scott Walters">
-	<main class="flex flex-col items-center justify-center min-h-screen text-gray-300 text-center p-4 gap-4">
-		<img
-			src="/images/me.webp"
-			alt="Scott Walters"
-			class="rounded-full size-64"
-		/>
-		<h1 class="text-4xl font-bold">Scott Walters</h1>
-		<p class="text-lg">
-			Software Engineering Leader in New York City
-		</p>
-		<hr class="w-1/2 md:w-1/3 lg:w-1/4 border-gray-300" />
+  <main
+    class="flex min-h-screen flex-col items-center justify-center gap-4 p-4 text-center text-gray-300"
+  >
+    <img
+      src="/images/me.webp"
+      alt="Scott Walters"
+      class="size-64 rounded-full"
+    />
+    <h1 class="text-4xl font-bold">Scott Walters</h1>
+    <p class="text-lg">Software Engineering Leader in New York City</p>
+    <hr class="w-1/2 border-gray-300 md:w-1/3 lg:w-1/4" />
 
-		<div class="space-y-4">
-			{
-				links.map((link) => (
-					<FancyLine
-						first={link.first}
-						href={link.href}
-						iconName={link.iconName}
-						buttonText={link.buttonText}
-						last={link.last}
-					/>
-				))
-			}
-		</div>
-	</main>
+    <div class="space-y-4">
+      {
+        links.map((link) => (
+          <FancyLine
+            first={link.first}
+            href={link.href}
+            iconName={link.iconName}
+            buttonText={link.buttonText}
+            last={link.last}
+          />
+        ))
+      }
+    </div>
+  </main>
 </Layout>
