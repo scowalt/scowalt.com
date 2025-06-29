@@ -1,0 +1,7 @@
+[install]
+# Save exact versions by default (no ^ or ~ prefixes)
+save = "exact"
+
+# Optional: Set other install preferences
+exact = true
+production = false
