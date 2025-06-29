@@ -15,6 +15,7 @@ jobs:
     permissions:
       contents: read
       deployments: write
+      id-token: write
     name: Deploy to Production
     steps:
       - name: Checkout
@@ -45,6 +46,7 @@ jobs:
       contents: read
       deployments: write
       pull-requests: write
+      id-token: write
     name: Deploy PR Preview
     steps:
       - name: Checkout
