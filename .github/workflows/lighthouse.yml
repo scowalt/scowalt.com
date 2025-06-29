@@ -1,28 +1,50 @@
 name: Lighthouse Performance
 on:
-  status: # Triggered when any status check is posted
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch: # Allow manual trigger for testing
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-    if: |
-      github.event.state == 'success' && 
-      github.event.context == 'Workers Builds: scowalt-com'
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Extract Cloudflare URL
-        id: get-url
-        run: |
-          # The deployment URL should be in the target_url of the status
-          echo "deployment_url=${{ github.event.target_url }}" >> $GITHUB_OUTPUT
+      - name: Wait for Cloudflare deployment
+        id: wait-for-deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Wait up to 5 minutes for Cloudflare deployment
+            for (let i = 0; i < 30; i++) {
+              const checks = await github.rest.checks.listForRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: context.payload.pull_request.head.sha
+              });
+              
+              const cfCheck = checks.data.check_runs.find(
+                check => check.name === 'Workers Builds: scowalt-com'
+              );
+              
+              if (cfCheck && cfCheck.status === 'completed' && cfCheck.conclusion === 'success') {
+                // Extract URL from the check
+                const urlMatch = cfCheck.details_url.match(/https:\/\/[a-z0-9-]+\.scowalt\.workers\.dev/);
+                if (urlMatch) {
+                  return urlMatch[0];
+                }
+              }
+              
+              console.log(`Waiting for Cloudflare deployment... (${i+1}/30)`);
+              await new Promise(r => setTimeout(r, 10000)); // Wait 10 seconds
+            }
+            throw new Error('Cloudflare deployment not found after 5 minutes');
 
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
-            ${{ steps.get-url.outputs.deployment_url }}
+            ${{ steps.wait-for-deployment.outputs.result }}
           uploadArtifacts: true
           temporaryPublicStorage: true
 
