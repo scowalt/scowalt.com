@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
-import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,5 +9,8 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: 'compile',
   }),
-  integrations: [tailwind(), icon()]
+  integrations: [icon()],
+  vite: {
+    plugins: [tailwindcss()],
+  }
 });
