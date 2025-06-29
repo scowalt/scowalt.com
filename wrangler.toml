@@ -1,9 +1,10 @@
 name = "scowalt-com"
+main = "dist/_worker.js/index.js"
 compatibility_date = "2024-06-29"
 compatibility_flags = ["nodejs_compat"]
 
-[build]
-command = "bun run build"
+[assets]
+directory = "dist"
 
 [[routes]]
 pattern = "scowalt.com/*"
