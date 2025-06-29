@@ -1,0 +1,21 @@
+# Allow all search engines to crawl the main content
+User-agent: *
+Allow: /
+
+# Block crawling of technical/build directories
+Disallow: /_astro/
+Disallow: /_image
+Disallow: /_worker.js/
+
+# Allow crawling of images directory (for profile photo SEO)
+Allow: /images/
+
+# Block common development/system files if they exist
+Disallow: /.*
+Disallow: /*.json$
+Disallow: /wrangler.toml
+Disallow: /package.json
+Disallow: /tsconfig.json
+
+# Optional: Add sitemap when you create one
+# Sitemap: https://scowalt.com/sitemap.xml
