@@ -5,12 +5,3 @@ compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = "dist"
-
-# Routes commented out to serve on both custom domain and workers.dev subdomain
-# [[routes]]
-# pattern = "scowalt.com/*"
-# zone_name = "scowalt.com"
-
-# [[routes]]
-# pattern = "www.scowalt.com/*"
-# zone_name = "scowalt.com"
