@@ -1,79 +1,102 @@
+# Lighthouse Performance Testing
+#
+# IDEAL ARCHITECTURE (not implemented due to complexity):
+# The ideal setup would be event-driven, where Cloudflare's deployment
+# triggers this workflow with the preview URL. This would require:
+# 1. Cloudflare to post deployment URLs in their check run output or status
+# 2. GitHub webhook/event that includes the deployment URL
+# 3. Or a custom Cloudflare Worker that calls GitHub API when deployment completes
+#
+# Since Cloudflare's GitHub integration doesn't expose deployment URLs
+# in a way that GitHub Actions can easily consume, we're running Lighthouse
+# against a local build instead. This still catches most performance issues
+# but misses Cloudflare-specific optimizations and edge behavior.
+#
+# When Cloudflare improves their GitHub integration, we can switch to
+# testing actual deployments using the event-driven approach.
+
 name: Lighthouse Performance
 on:
-  status: # Triggered when any status check is posted
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-    if: |
-      github.event.state == 'success' && 
-      github.event.context == 'Workers Builds: scowalt-com'
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Extract Cloudflare URL
-        id: get-url
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build site
+        run: bun run build
+
+      - name: Start preview server
         run: |
-          # The deployment URL should be in the target_url of the status
-          echo "deployment_url=${{ github.event.target_url }}" >> $GITHUB_OUTPUT
+          bun run preview &
+          echo $! > preview.pid
+          # Give the server time to start
+          sleep 5
 
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
-            ${{ steps.get-url.outputs.deployment_url }}
+            http://localhost:4321
+            http://localhost:4321/posts
+          configPath: ./lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
 
-      - name: Format Lighthouse Score
-        id: format-score
+      - name: Stop preview server
+        if: always()
+        run: |
+          if [ -f preview.pid ]; then
+            kill $(cat preview.pid) || true
+          fi
+
+      - name: Format Lighthouse results
+        if: always()
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            const manifest = JSON.parse(fs.readFileSync('./lighthouse-results/manifest.json', 'utf8'));
-            const result = manifest[0].summary;
+            const resultsPath = './lighthouse-results/manifest.json';
 
-            const formatScore = (score) => {
-              const percentage = Math.round(score * 100);
-              const emoji = percentage >= 90 ? '🟢' : percentage >= 50 ? '🟡' : '🔴';
-              return `${emoji} ${percentage}`;
-            };
+            if (!fs.existsSync(resultsPath)) {
+              console.log('No Lighthouse results found');
+              return;
+            }
 
-            const scores = {
-              performance: formatScore(result.performance),
-              accessibility: formatScore(result.accessibility),
-              'best-practices': formatScore(result['best-practices']),
-              seo: formatScore(result.seo)
-            };
+            const manifest = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+            const results = manifest.map(result => {
+              const scores = result.summary;
+              const formatScore = (score) => {
+                const percentage = Math.round(score * 100);
+                const emoji = percentage >= 90 ? '🟢' : percentage >= 50 ? '🟡' : '🔴';
+                return `${emoji} ${percentage}`;
+              };
+              
+              return `
+                **${result.url}**
+                - Performance: ${formatScore(scores.performance)}
+                - Accessibility: ${formatScore(scores.accessibility)}
+                - Best Practices: ${formatScore(scores['best-practices'])}
+                - SEO: ${formatScore(scores.seo)}
+              `;
+            }).join('\n');
 
-            return scores;
-
-      - name: Update PR Status
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const scores = ${{ steps.format-score.outputs.result }};
-
-            // Find the PR associated with this commit
-            const prs = await github.rest.pulls.list({
+            // Post results as PR comment
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              state: 'open'
+              issue_number: context.issue.number,
+              body: `## Lighthouse Results\n${results}\n\n[View detailed reports](${manifest[0].url})`
             });
-
-            const pr = prs.data.find(pr => pr.head.sha === context.sha);
-
-            if (pr) {
-              // Create a status check
-              await github.rest.repos.createCommitStatus({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                sha: context.sha,
-                state: 'success',
-                target_url: `https://googlechrome.github.io/lighthouse/viewer/?jsonurl=${manifest[0].url}`,
-                description: `Performance: ${scores.performance} | Accessibility: ${scores.accessibility}`,
-                context: 'Lighthouse CI'
-              });
-            }
