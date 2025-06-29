@@ -2,5 +2,21 @@
     "extends": [
         "config:base",
         ":semanticCommits"
+    ],
+    "rangeStrategy": "pin",
+    "automerge": true,
+    "automergeType": "pr",
+    "platformAutomerge": true,
+    "automergeStrategy": "squash",
+    "packageRules": [
+        {
+            "matchUpdateTypes": ["patch", "minor"],
+            "automerge": true
+        },
+        {
+            "matchUpdateTypes": ["major"],
+            "automerge": false,
+            "addLabels": ["major-update"]
+        }
     ]
 }
