@@ -27,6 +27,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -41,7 +46,7 @@ jobs:
       - name: Start Wrangler dev server
         run: |
           # Use Wrangler to run the Cloudflare build locally
-          npx wrangler pages dev dist --port 4321 &
+          bunx wrangler pages dev dist --port 4321 &
           echo $! > wrangler.pid
           # Give the server time to start
           sleep 10
