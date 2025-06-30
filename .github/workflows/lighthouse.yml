@@ -38,13 +38,13 @@ jobs:
       - name: Build site
         run: bun run build
 
-      - name: Start Wrangler dev server
+      - name: Start static server
         run: |
-          # Use Wrangler to run the Cloudflare build locally
-          bunx wrangler pages dev dist --port 4321 &
-          echo $! > wrangler.pid
+          # Serve the built static files for Lighthouse testing
+          bunx serve dist -p 4321 &
+          echo $! > server.pid
           # Give the server time to start
-          sleep 10
+          sleep 5
 
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@v12
@@ -55,11 +55,11 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
 
-      - name: Stop Wrangler server
+      - name: Stop static server
         if: always()
         run: |
-          if [ -f wrangler.pid ]; then
-            kill $(cat wrangler.pid) || true
+          if [ -f server.pid ]; then
+            kill $(cat server.pid) || true
           fi
 
       - name: Format Lighthouse results
