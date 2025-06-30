@@ -1,9 +1,9 @@
 resource "github_repository" "scowalt_com" {
   name         = "scowalt.com"
-  description  = "Scott Cowalt's personal landing page"
+  description  = "My personal website"
   homepage_url = "https://scowalt.com"
 
-  visibility = "public"
+  visibility = "private"
 
   has_issues      = true
   has_projects    = false
