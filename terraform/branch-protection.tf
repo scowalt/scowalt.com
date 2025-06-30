@@ -8,7 +8,7 @@ resource "github_branch_protection" "main" {
       "Workers Builds: scowalt-com",
       "Code Quality & Tests",
       "Terraform Validation",
-      "Lighthouse Performance / lighthouse"
+      "lighthouse"
     ]
   }
 
