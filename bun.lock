@@ -8,7 +8,7 @@
         "@iconify-json/cib": "1.2.2",
         "@iconify-json/mdi": "1.2.3",
         "@tailwindcss/vite": "4.1.11",
-        "astro": "5.10.1",
+        "astro": "5.10.2",
         "astro-icon": "1.1.5",
         "tailwindcss": "4.1.11",
       },
@@ -19,9 +19,9 @@
         "@typescript-eslint/parser": "8.21.0",
         "eslint": "9.18.0",
         "eslint-plugin-astro": "1.3.1",
-        "globals": "16.0.0",
+        "globals": "16.3.0",
         "lint-staged": "16.1.2",
-        "prettier": "3.4.2",
+        "prettier": "3.6.2",
         "prettier-plugin-astro": "0.14.1",
         "prettier-plugin-tailwindcss": "0.6.13",
         "simple-git-hooks": "2.12.1",
@@ -421,7 +421,7 @@
 
     "as-table": ["as-table@1.0.55", "", { "dependencies": { "printable-characters": "^1.0.42" } }, "sha512-xvsWESUJn0JN421Xb9MQw6AsMHRCUknCe0Wjlxvjud80mU4E6hQf1A6NzQKcYNmYw62MfzEtXc+badstZP3JpQ=="],
 
-    "astro": ["astro@5.10.1", "", { "dependencies": { "@astrojs/compiler": "^2.12.2", "@astrojs/internal-helpers": "0.6.1", "@astrojs/markdown-remark": "6.3.2", "@astrojs/telemetry": "3.3.0", "@capsizecss/unpack": "^2.4.0", "@oslojs/encoding": "^1.1.0", "@rollup/pluginutils": "^5.1.4", "acorn": "^8.14.1", "aria-query": "^5.3.2", "axobject-query": "^4.1.0", "boxen": "8.0.1", "ci-info": "^4.2.0", "clsx": "^2.1.1", "common-ancestor-path": "^1.0.1", "cookie": "^1.0.2", "cssesc": "^3.0.0", "debug": "^4.4.0", "deterministic-object-hash": "^2.0.2", "devalue": "^5.1.1", "diff": "^5.2.0", "dlv": "^1.1.3", "dset": "^3.1.4", "es-module-lexer": "^1.6.0", "esbuild": "^0.25.0", "estree-walker": "^3.0.3", "flattie": "^1.1.1", "fontace": "~0.3.0", "github-slugger": "^2.0.0", "html-escaper": "3.0.3", "http-cache-semantics": "^4.1.1", "import-meta-resolve": "^4.1.0", "js-yaml": "^4.1.0", "kleur": "^4.1.5", "magic-string": "^0.30.17", "magicast": "^0.3.5", "mrmime": "^2.0.1", "neotraverse": "^0.6.18", "p-limit": "^6.2.0", "p-queue": "^8.1.0", "package-manager-detector": "^1.1.0", "picomatch": "^4.0.2", "prompts": "^2.4.2", "rehype": "^13.0.2", "semver": "^7.7.1", "shiki": "^3.2.1", "tinyexec": "^0.3.2", "tinyglobby": "^0.2.12", "tsconfck": "^3.1.5", "ultrahtml": "^1.6.0", "unifont": "~0.5.0", "unist-util-visit": "^5.0.0", "unstorage": "^1.15.0", "vfile": "^6.0.3", "vite": "^6.3.4", "vitefu": "^1.0.6", "xxhash-wasm": "^1.1.0", "yargs-parser": "^21.1.1", "yocto-spinner": "^0.2.1", "zod": "^3.24.2", "zod-to-json-schema": "^3.24.5", "zod-to-ts": "^1.2.0" }, "optionalDependencies": { "sharp": "^0.33.3" }, "bin": { "astro": "astro.js" } }, "sha512-DJVmt+51jU1xmgmAHCDwuUgcG/5aVFSU+tcX694acAZqPVt8EMUAmUZcJDX36Z7/EztnPph9HR3pm72jS2EgHQ=="],
+    "astro": ["astro@5.10.2", "", { "dependencies": { "@astrojs/compiler": "^2.12.2", "@astrojs/internal-helpers": "0.6.1", "@astrojs/markdown-remark": "6.3.2", "@astrojs/telemetry": "3.3.0", "@capsizecss/unpack": "^2.4.0", "@oslojs/encoding": "^1.1.0", "@rollup/pluginutils": "^5.1.4", "acorn": "^8.14.1", "aria-query": "^5.3.2", "axobject-query": "^4.1.0", "boxen": "8.0.1", "ci-info": "^4.2.0", "clsx": "^2.1.1", "common-ancestor-path": "^1.0.1", "cookie": "^1.0.2", "cssesc": "^3.0.0", "debug": "^4.4.0", "deterministic-object-hash": "^2.0.2", "devalue": "^5.1.1", "diff": "^5.2.0", "dlv": "^1.1.3", "dset": "^3.1.4", "es-module-lexer": "^1.6.0", "esbuild": "^0.25.0", "estree-walker": "^3.0.3", "flattie": "^1.1.1", "fontace": "~0.3.0", "github-slugger": "^2.0.0", "html-escaper": "3.0.3", "http-cache-semantics": "^4.1.1", "import-meta-resolve": "^4.1.0", "js-yaml": "^4.1.0", "kleur": "^4.1.5", "magic-string": "^0.30.17", "magicast": "^0.3.5", "mrmime": "^2.0.1", "neotraverse": "^0.6.18", "p-limit": "^6.2.0", "p-queue": "^8.1.0", "package-manager-detector": "^1.1.0", "picomatch": "^4.0.2", "prompts": "^2.4.2", "rehype": "^13.0.2", "semver": "^7.7.1", "shiki": "^3.2.1", "tinyexec": "^0.3.2", "tinyglobby": "^0.2.12", "tsconfck": "^3.1.5", "ultrahtml": "^1.6.0", "unifont": "~0.5.0", "unist-util-visit": "^5.0.0", "unstorage": "^1.15.0", "vfile": "^6.0.3", "vite": "^6.3.4", "vitefu": "^1.0.6", "xxhash-wasm": "^1.1.0", "yargs-parser": "^21.1.1", "yocto-spinner": "^0.2.1", "zod": "^3.24.2", "zod-to-json-schema": "^3.24.5", "zod-to-ts": "^1.2.0" }, "optionalDependencies": { "sharp": "^0.33.3" }, "bin": { "astro": "astro.js" } }, "sha512-CCBU+e/Apk6NWEMnc/R9dVZD/+FaCnNqWJicX1Oe6T18vLKop+LPs/m/88ekJk4zxP1g1N/GfUq4wEedUSk1Wg=="],
 
     "astro-eslint-parser": ["astro-eslint-parser@1.2.2", "", { "dependencies": { "@astrojs/compiler": "^2.0.0", "@typescript-eslint/scope-manager": "^7.0.0 || ^8.0.0", "@typescript-eslint/types": "^7.0.0 || ^8.0.0", "astrojs-compiler-sync": "^1.0.0", "debug": "^4.3.4", "entities": "^6.0.0", "eslint-scope": "^8.0.1", "eslint-visitor-keys": "^4.0.0", "espree": "^10.0.0", "fast-glob": "^3.3.3", "is-glob": "^4.0.3", "semver": "^7.3.8" } }, "sha512-JepyLROIad6f44uyqMF6HKE2QbunNzp3mYKRcPoDGt0QkxXmH222FAFC64WTyQu2Kg8NNEXHTN/sWuUId9sSxw=="],
 
@@ -703,7 +703,7 @@
 
     "glob-to-regexp": ["glob-to-regexp@0.4.1", "", {}, "sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw=="],
 
-    "globals": ["globals@16.0.0", "", {}, "sha512-iInW14XItCXET01CQFqudPOWP2jYMl7T+QRQT+UNcR/iQncN/F0UNpgd76iFkBPgNQb4+X3LV9tLJYzwh+Gl3A=="],
+    "globals": ["globals@16.3.0", "", {}, "sha512-bqWEnJ1Nt3neqx2q5SFfGS8r/ahumIakg3HcwtNlrVlwXIeNumWn/c7Pn/wKzGhf6SaW6H6uWXLqC30STCMchQ=="],
 
     "gopd": ["gopd@1.2.0", "", {}, "sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg=="],
 
@@ -1049,7 +1049,7 @@
 
     "prelude-ls": ["prelude-ls@1.2.1", "", {}, "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="],
 
-    "prettier": ["prettier@3.4.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ=="],
+    "prettier": ["prettier@3.6.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ=="],
 
     "prettier-plugin-astro": ["prettier-plugin-astro@0.14.1", "", { "dependencies": { "@astrojs/compiler": "^2.9.1", "prettier": "^3.0.0", "sass-formatter": "^0.7.6" } }, "sha512-RiBETaaP9veVstE4vUwSIcdATj6dKmXljouXc/DDNwBSPTp8FRkLGDSGFClKsAFeeg+13SB0Z1JZvbD76bigJw=="],
 
@@ -1460,8 +1460,6 @@
     "p-locate/p-limit": ["p-limit@3.1.0", "", { "dependencies": { "yocto-queue": "^0.1.0" } }, "sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ=="],
 
     "pkg-types/pathe": ["pathe@2.0.3", "", {}, "sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w=="],
-
-    "prettier-plugin-astro/prettier": ["prettier@3.6.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ=="],
 
     "prompts/kleur": ["kleur@3.0.3", "", {}, "sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w=="],
 
