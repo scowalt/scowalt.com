@@ -12,7 +12,9 @@ const ensureUnsafeInline = (headerValue: string | null): string => {
     if (!directive) continue;
 
     const [name, ...values] = directive.split(/\s+/);
-    directiveMap.set(name.toLowerCase(), values);
+    if (name) {
+      directiveMap.set(name.toLowerCase(), values);
+    }
   }
 
   const updateDirective = (name: string) => {
@@ -41,7 +43,7 @@ const ensureUnsafeInline = (headerValue: string | null): string => {
   return serialized.endsWith(';') ? serialized : `${serialized};`;
 };
 
-export const onRequest = defineMiddleware(async (context, next) => {
+export const onRequest = defineMiddleware(async (_context, next) => {
   const response = await next();
 
   if (!import.meta.env.DEV) {
