@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+Astro.response.status = 404;
+---
+
+<Layout title="Page Not Found | Scott Walters">
+  <main
+    class="flex min-h-screen flex-col items-center justify-center gap-6 p-6 text-center text-gray-300"
+  >
+    <h1 class="text-5xl font-black">404</h1>
+    <p class="max-w-lg text-lg">
+      I can&apos;t find the page you were looking for. It might have moved, or
+      maybe there&apos;s a typo in the URL.
+    </p>
+    <a
+      class="rounded-full bg-[rgb(var(--accent))] px-6 py-3 text-base font-semibold text-white transition hover:bg-[rgb(var(--accent-dark))]"
+      href="/"
+    >
+      Back to the homepage
+    </a>
+  </main>
+</Layout>
