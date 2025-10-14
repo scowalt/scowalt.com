@@ -1,1 +1,61 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@layer base {
+  html {
+    background-color: #212121;
+  }
+
+  body {
+    background-color: #212121;
+  }
+
+  .prose :where(a) {
+    color: rgb(153 204 255);
+  }
+  .prose :where(a:hover) {
+    color: rgb(0 123 255);
+  }
+  .prose :where(h1, h2, h3, h4, h5, h6) {
+    color: rgb(209 213 219);
+    position: relative;
+    display: block;
+    padding-left: 2rem;
+    margin-left: -2rem;
+  }
+  .prose :where(h1, h2, h3, h4, h5, h6) .header-anchor {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: rgb(153 204 255);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+  .prose :where(h1, h2, h3, h4, h5, h6):hover .header-anchor,
+  .prose :where(h1, h2, h3, h4, h5, h6):focus-within .header-anchor,
+  .header-anchor:focus {
+    opacity: 1;
+  }
+  .header-anchor:hover,
+  .header-anchor:focus {
+    color: rgb(0 123 255);
+  }
+  .anchor-icon {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+  }
+  .prose :where(p, li) {
+    color: rgb(209 213 219);
+  }
+  .prose {
+    color: rgb(209 213 219);
+  }
+}
