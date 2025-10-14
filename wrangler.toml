@@ -1,9 +1,23 @@
 name = "scowalt-com"
 main = "dist/_worker.js/index.js"
-compatibility_date = "2024-09-24"
-compatibility_flags = ["nodejs_compat"]
+# Use the latest compatibility date so we can consume new Cloudflare runtime fixes/features.
+# Remember to review the flag list below whenever bumping the date to keep behaviour consistent.
+compatibility_date = "2025-10-14"
+compatibility_flags = [
+  "nodejs_compat",
+  "assets_navigation_has_no_effect",
+  "do_not_set_tostring_tag",
+  "disable_nodejs_process_v2",
+  "nodejs_compat_do_not_populate_process_env"
+]
+# PR previews are required so the GitHub integration can publish branch-specific URLs.
 preview_urls = true
 
 [assets]
 directory = "dist"
+# Explicit binding keeps Worker-first routing happy and clears the Wrangler warning about assets.
+binding = "ASSETS"
+# With run_worker_first we ensure SSR handles navigations after bumping the compat date.
+run_worker_first = true
+# 404 fallback lets the Worker render the custom Astro page for unknown routes.
 not_found_handling = "404-page"
