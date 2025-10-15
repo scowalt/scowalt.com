@@ -9,7 +9,9 @@
   body {
     background-color: #212121;
   }
+}
 
+@layer utilities {
   .prose :where(a) {
     color: rgb(153 204 255);
   }
@@ -22,6 +24,17 @@
     display: block;
     padding-left: 2rem;
     margin-left: -2rem;
+  }
+  .prose :where(h1) {
+    border-bottom: 2px solid rgb(75 85 99 / 0.6);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .prose :where(h2) {
+    font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+    line-height: 1.25;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
   }
   .prose :where(h1, h2, h3, h4, h5, h6) .header-anchor {
     position: absolute;
