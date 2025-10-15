@@ -23,3 +23,5 @@ terraform.tfstate.backup
 *.tfplan.*
 
 *.log
+
+tmp

@@ -1,0 +1,14 @@
+version: '0.2'
+language: en
+ignorePaths:
+  - .git
+  - bun.lock
+  - dist
+  - node_modules
+  - public
+  - tmp
+words:
+  - Astro
+  - MDX
+  - Tailwind
+  - scowalt

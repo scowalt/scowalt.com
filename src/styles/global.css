@@ -8,33 +8,79 @@
 
   body {
     background-color: #212121;
+    color: rgb(229 231 235);
+    line-height: 1.65;
+    font-feature-settings: 'liga', 'kern';
+    text-rendering: optimizeLegibility;
+    color-scheme: dark light;
   }
 }
 
 @layer utilities {
+  .prose {
+    color: rgb(229 231 235);
+    max-width: 70ch;
+    margin-inline: auto;
+  }
+
+  .prose :where(p) {
+    line-height: 1.7;
+  }
+
+  .prose :where(p, li) {
+    color: #d9dbdf;
+    font-weight: 400;
+  }
+
   .prose :where(a) {
-    color: rgb(153 204 255);
+    color: #7bc8ff;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    transition: color 0.15s ease;
   }
   .prose :where(a:hover) {
-    color: rgb(0 123 255);
+    color: #a5dcff;
+  }
+  .prose :where(a:focus-visible) {
+    color: #a5dcff;
+    outline: 2px solid rgb(112 181 255);
+    outline-offset: 3px;
   }
   .prose :where(h1, h2, h3, h4, h5, h6) {
-    color: rgb(209 213 219);
+    color: #f1f3f6;
     position: relative;
     display: block;
     padding-left: 2rem;
     margin-left: -2rem;
+    scroll-margin-top: 5rem;
+    text-wrap: balance;
   }
   .prose :where(h1) {
     border-bottom: 2px solid rgb(75 85 99 / 0.6);
     padding-bottom: 0.75rem;
     margin-bottom: 2rem;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    color: #f4f5f6;
   }
   .prose :where(h2) {
-    font-size: clamp(1.5rem, 2.2vw, 2.1rem);
-    line-height: 1.25;
-    margin-top: 1.5rem;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    line-height: 1.3;
+    font-weight: 600;
+    color: #e3e6eb;
+    letter-spacing: 0.015em;
+    margin-top: 3rem;
     margin-bottom: 1rem;
+  }
+  .prose :where(h3) {
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    line-height: 1.35;
+    font-weight: 600;
+    color: #e9ebf0;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
   .prose :where(h1, h2, h3, h4, h5, h6) .header-anchor {
     position: absolute;
@@ -67,10 +113,96 @@
     width: 1rem;
     height: 1rem;
   }
-  .prose :where(p, li) {
-    color: rgb(209 213 219);
+  .prose
+    :where(
+      p + p,
+      p + ul,
+      p + ol,
+      ul + p,
+      ol + p,
+      ul + ul,
+      ol + ol,
+      blockquote + *,
+      h2 + *,
+      h3 + *,
+      h4 + *
+    ) {
+    margin-top: 1.25rem;
   }
+  .prose :where(* + h2) {
+    margin-top: 3.25rem;
+  }
+  .prose :where(* + h3) {
+    margin-top: 2.6rem;
+  }
+  .prose :where(* + h4) {
+    margin-top: 1.75rem;
+  }
+
+  .prose :where(.footnotes) {
+    border-top: 1px solid #2b2e33;
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #9fa3a9;
+  }
+  .prose :where(.footnotes ol) {
+    list-style: decimal;
+    padding-left: 2rem;
+    margin: 0;
+  }
+  .prose :where(.footnotes li) {
+    margin: 0.25rem 0;
+    position: relative;
+    padding-left: 0.75rem;
+    text-indent: -0.75rem;
+  }
+  .prose :where(.footnotes li::marker) {
+    font-weight: 600;
+  }
+  .prose :where(.footnotes .footnote-backref) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    height: 1.75rem;
+    margin-left: 0.5rem;
+    border-radius: 9999px;
+    color: #9ebfe6;
+    text-decoration: none;
+    outline: 1px solid transparent;
+    transition:
+      outline-color 0.2s ease,
+      background-color 0.2s ease;
+  }
+  .prose :where(.footnotes .footnote-backref:hover) {
+    background-color: rgb(29 78 216 / 0.2);
+  }
+  .prose :where(.footnotes .footnote-backref:focus-visible) {
+    outline: 2px solid rgb(112 181 255);
+    outline-offset: 2px;
+  }
+  .prose :where(.footnotes a) {
+    color: #7bc8ff;
+  }
+}
+
+@layer base {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer utilities {
   .prose {
-    color: rgb(209 213 219);
+    animation: fade-in 300ms ease-out both;
   }
 }
