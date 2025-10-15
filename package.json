@@ -49,7 +49,7 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "*.mdx": [
+    "**/*.mdx": [
       "cspell lint --no-progress --no-summary",
       "remark --frail --no-stdout",
       "prettier --write"
