@@ -15,6 +15,7 @@ resource "github_repository" "scowalt_com" {
   allow_merge_commit          = false
   allow_squash_merge          = true
   allow_rebase_merge          = false
+  allow_auto_merge            = true
   squash_merge_commit_title   = "COMMIT_OR_PR_TITLE"
   squash_merge_commit_message = "COMMIT_MESSAGES"
 
