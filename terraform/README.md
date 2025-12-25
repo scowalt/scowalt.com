@@ -1,18 +1,18 @@
 # GitHub Repository Configuration
 
-This directory contains Terraform configuration for managing the GitHub repository settings declaratively.
+This directory contains OpenTofu configuration for managing the GitHub repository settings declaratively.
 
 ## Setup
 
-1. Install Terraform: <https://terraform.io/downloads>
+1. Install OpenTofu: <https://opentofu.org/docs/intro/install/>
 2. Set up GitHub authentication (requires GITHUB_TOKEN environment variable or GitHub CLI)
-3. Initialize Terraform: `terraform init`
+3. Initialize OpenTofu: `tofu init`
 
 ## Usage
 
-- **Plan changes**: `terraform plan`
-- **Apply changes**: `terraform apply`
-- **Check current state**: `terraform show`
+- **Plan changes**: `tofu plan`
+- **Apply changes**: `tofu apply`
+- **Check current state**: `tofu show`
 
 ## Authentication
 
@@ -35,4 +35,4 @@ This configuration uses the GitHub provider, which can authenticate via:
 - `main.tf` - Provider configuration
 - `repository.tf` - Repository settings
 - `branch-protection.tf` - Branch protection rules
-- `.gitignore` - Terraform-specific gitignore
+- `.gitignore` - OpenTofu-specific gitignore

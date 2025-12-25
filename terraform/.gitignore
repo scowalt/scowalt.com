@@ -1,10 +1,10 @@
-# Terraform files
+# OpenTofu/Terraform files
 *.tfstate
 *.tfstate.*
 .terraform/
 .terraform.lock.hcl
-terraform.tfplan
-terraform.tfplan.json
+*.tfplan
+*.tfplan.json
 
 # Crash log files
 crash.log
@@ -22,3 +22,4 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+.tofurc

@@ -7,7 +7,7 @@ resource "github_branch_protection" "main" {
     contexts = [
       "Workers Builds: scowalt-com",
       "Code Quality & Tests",
-      "Terraform Validation"
+      "OpenTofu Validation"
     ]
   }
 

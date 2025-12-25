@@ -34,8 +34,8 @@ jobs:
       - name: Build project
         run: bun run build
 
-  terraform-validation:
-    name: Terraform Validation
+  opentofu-validation:
+    name: OpenTofu Validation
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -44,28 +44,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Read Terraform version
-        id: tfversion
-        run: echo "version=$(cat .terraform-version)" >> $GITHUB_OUTPUT
+      - name: Read OpenTofu version
+        id: tofuversion
+        run: echo "version=$(cat .opentofu-version)" >> $GITHUB_OUTPUT
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
         with:
-          terraform_version: ${{ steps.tfversion.outputs.version }}
+          tofu_version: ${{ steps.tofuversion.outputs.version }}
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v6
         with:
           tflint_version: latest
 
-      - name: Check Terraform formatting
-        run: terraform fmt -check
+      - name: Check OpenTofu formatting
+        run: tofu fmt -check
 
-      - name: Initialize Terraform
-        run: terraform init
+      - name: Initialize OpenTofu
+        run: tofu init
 
-      - name: Validate Terraform configuration
-        run: terraform validate
+      - name: Validate OpenTofu configuration
+        run: tofu validate
 
       - name: Run TFLint
         run: tflint
