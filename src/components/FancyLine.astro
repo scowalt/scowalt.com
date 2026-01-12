@@ -6,7 +6,7 @@ interface Props {
   last?: string;
   buttonText: string;
   href: string;
-  iconName?: string;
+  iconName?: string | undefined;
 }
 
 const { first, last, buttonText, href, iconName } = Astro.props;
