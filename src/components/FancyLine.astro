@@ -6,7 +6,7 @@ interface Props {
   last?: string;
   buttonText: string;
   href: string;
-  iconName: string;
+  iconName?: string;
 }
 
 const { first, last, buttonText, href, iconName } = Astro.props;
@@ -21,7 +21,7 @@ const isExternal = href.startsWith('http');
     rel={isExternal ? 'noopener noreferrer' : undefined}
     class="flex items-center whitespace-nowrap hover:underline"
   >
-    <Icon name={iconName} class="mr-2 h-4 w-4" />{buttonText}
+    {iconName && <Icon name={iconName} class="mr-2 h-4 w-4" />}{buttonText}
   </a>
   <span class="text-left">{last}</span>
 </div>
