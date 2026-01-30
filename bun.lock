@@ -41,7 +41,7 @@
     },
   },
   "overrides": {
-    "@eslint/plugin-kit": "0.5.1",
+    "@eslint/plugin-kit": "0.6.0",
     "axios": "1.13.4",
     "form-data": "4.0.5",
     "tar": "7.5.7",
@@ -330,7 +330,7 @@
 
     "@eslint/object-schema": ["@eslint/object-schema@2.1.7", "", {}, "sha512-VtAOaymWVfZcmZbp6E2mympDIHvyjXs/12LqWYjVw6qjrfF+VK+fyG33kChz3nnK+SU5/NeHOqrTEHS8sXO3OA=="],
 
-    "@eslint/plugin-kit": ["@eslint/plugin-kit@0.5.1", "", { "dependencies": { "@eslint/core": "^1.0.1", "levn": "^0.4.1" } }, "sha512-hZ2uC1jbf6JMSsF2ZklhRQqf6GLpYyux6DlzegnW/aFlpu6qJj5GO7ub7WOETCrEl6pl6DAX7RgTgj/fyG+6BQ=="],
+    "@eslint/plugin-kit": ["@eslint/plugin-kit@0.6.0", "", { "dependencies": { "@eslint/core": "^1.1.0", "levn": "^0.4.1" } }, "sha512-bIZEUzOI1jkhviX2cp5vNyXQc6olzb2ohewQubuYlMXZ2Q/XjBO0x0XhGPvc9fjSIiUN0vw+0hq53BJ4eQSJKQ=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
@@ -1886,7 +1886,7 @@
 
     "@eslint/eslintrc/js-yaml": ["js-yaml@4.1.0", "", { "dependencies": { "argparse": "^2.0.1" }, "bin": { "js-yaml": "bin/js-yaml.js" } }, "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA=="],
 
-    "@eslint/plugin-kit/@eslint/core": ["@eslint/core@1.0.1", "", { "dependencies": { "@types/json-schema": "^7.0.15" } }, "sha512-r18fEAj9uCk+VjzGt2thsbOmychS+4kxI14spVNibUO2vqKX7obOG+ymZljAwuPZl+S3clPGwCwTDtrdqTiY6Q=="],
+    "@eslint/plugin-kit/@eslint/core": ["@eslint/core@1.1.0", "", { "dependencies": { "@types/json-schema": "^7.0.15" } }, "sha512-/nr9K9wkr3P1EzFTdFdMoLuo1PmIxjmwvPozwoSodjNBdefGujXQUF93u1DDZpEaTuDvMsIQddsd35BwtrW9Xw=="],
 
     "@iconify/tools/svgo": ["svgo@3.3.2", "", { "dependencies": { "@trysound/sax": "0.2.0", "commander": "^7.2.0", "css-select": "^5.1.0", "css-tree": "^2.3.1", "css-what": "^6.1.0", "csso": "^5.0.5", "picocolors": "^1.0.0" }, "bin": "./bin/svgo" }, "sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw=="],
 
