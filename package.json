@@ -38,7 +38,7 @@
     "remark-preset-lint-recommended": "7.0.1",
     "simple-git-hooks": "2.13.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.54.0"
+    "typescript-eslint": "8.55.0"
   },
   "simple-git-hooks": {
     "pre-commit": "bunx lint-staged",
