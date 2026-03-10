@@ -65,12 +65,12 @@
     ]
   },
   "dependencies": {
-    "@astrojs/cloudflare": "12.6.12",
-    "@astrojs/mdx": "4.3.13",
+    "@astrojs/cloudflare": "12.6.13",
+    "@astrojs/mdx": "4.3.14",
     "@iconify-json/cib": "1.2.3",
     "@iconify-json/mdi": "1.2.3",
     "@tailwindcss/vite": "4.2.1",
-    "astro": "5.18.0",
+    "astro": "5.18.1",
     "astro-icon": "1.1.5",
     "tailwindcss": "4.2.1"
   },
