@@ -17,7 +17,7 @@
     "prepare": "bunx simple-git-hooks"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.7",
+    "@astrojs/check": "0.9.8",
     "@eslint/js": "9.39.4",
     "@tailwindcss/typography": "0.5.19",
     "cspell": "9.7.0",
