@@ -24,4 +24,7 @@ terraform.tfstate.backup
 
 *.log
 
+# lefthook
+lefthook-local.yml
+
 tmp

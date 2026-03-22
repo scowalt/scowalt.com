@@ -1,0 +1,38 @@
+pre-commit:
+  parallel: true
+  commands:
+    gitleaks:
+      run: gitleaks protect --staged --no-banner
+
+    lint-and-format-code:
+      glob: '*.{js,ts,astro}'
+      run: bunx eslint --fix {staged_files} && bunx prettier --write {staged_files}
+      stage_fixed: true
+
+    prettier-config:
+      glob: '*.{json,md,yml,yaml}'
+      run: bunx prettier --write {staged_files}
+      stage_fixed: true
+
+    prettier-css:
+      glob: '*.css'
+      run: bunx prettier --write {staged_files}
+      stage_fixed: true
+
+    lint-and-format-mdx:
+      glob: '*.mdx'
+      run: >-
+        bunx cspell lint --no-progress --no-summary {staged_files}
+        && bunx remark --frail --no-stdout {staged_files}
+        && bunx prettier --write {staged_files}
+      stage_fixed: true
+
+    tofu-fmt:
+      glob: 'opentofu/*.tf'
+      run: tofu fmt {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    typecheck:
+      run: bun run typecheck
