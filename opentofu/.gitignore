@@ -1,4 +1,4 @@
-# OpenTofu/Terraform files
+# OpenTofu files
 *.tfstate
 *.tfstate.*
 .terraform/

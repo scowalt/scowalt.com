@@ -1,7 +1,7 @@
 dist/
 node_modules/
 .astro/
-terraform/
+opentofu/
 *.md
 bun.lock
 wrangler.toml

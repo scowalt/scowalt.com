@@ -13,7 +13,7 @@ node_modules
 
 dist
 
-# terraform
+# opentofu
 .terraform/
 .terraform.lock.hcl
 terraform.tfstate

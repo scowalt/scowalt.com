@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./terraform
+        working-directory: ./opentofu
     steps:
       - name: Checkout code
         uses: actions/checkout@v5

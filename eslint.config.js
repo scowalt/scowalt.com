@@ -38,6 +38,6 @@ export default [
     },
   },
   {
-    ignores: ['dist/', 'node_modules/', '.astro/', 'terraform/'],
+    ignores: ['dist/', 'node_modules/', '.astro/', 'opentofu/'],
   },
 ];
