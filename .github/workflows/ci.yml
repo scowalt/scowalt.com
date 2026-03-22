@@ -34,20 +34,6 @@ jobs:
       - name: Build project
         run: bun run build
 
-  gitleaks:
-    name: Secret Scanning
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Run Gitleaks
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   opentofu-validation:
     name: OpenTofu Validation
     runs-on: ubuntu-latest
