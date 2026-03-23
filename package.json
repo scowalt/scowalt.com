@@ -14,7 +14,7 @@
     "format:check": "prettier --check .",
     "typecheck": "bunx astro check",
     "audit": "bun audit",
-    "prepare": "lefthook install"
+    "prepare": "[ -n \"$CI\" ] || lefthook install"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.8",
