@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/javascript-node:22
+FROM mcr.microsoft.com/devcontainers/javascript-node:24
 
 ARG LEFTHOOK_VERSION=2.1.4
 ARG GIT_TOWN_VERSION=22.7.0
