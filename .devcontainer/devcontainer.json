@@ -15,6 +15,9 @@
       "tflint": "latest"
     }
   },
+  "remoteEnv": {
+    "DOPPLER_TOKEN": "${localEnv:DOPPLER_TOKEN}"
+  },
   "postCreateCommand": "bun install",
   "forwardPorts": [],
   "otherPortsAttributes": {

@@ -53,6 +53,9 @@ jobs:
         with:
           tofu_version: ${{ steps.tofuversion.outputs.version }}
 
+      - name: Setup Doppler CLI
+        uses: dopplerhq/cli-action@v4
+
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v6
         with:
@@ -62,10 +65,14 @@ jobs:
         run: tofu fmt -check
 
       - name: Initialize OpenTofu
-        run: tofu init
+        run: doppler run -- tofu init
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
 
       - name: Validate OpenTofu configuration
-        run: tofu validate
+        run: doppler run -- tofu validate
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
 
       - name: Run TFLint
         run: tflint
