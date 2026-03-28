@@ -53,7 +53,7 @@ jobs:
         run: echo "version=$(cat .opentofu-version)" >> $GITHUB_OUTPUT
 
       - name: Setup OpenTofu
-        uses: opentofu/setup-opentofu@v1
+        uses: opentofu/setup-opentofu@v2
         with:
           tofu_version: ${{ steps.tofuversion.outputs.version }}
 
