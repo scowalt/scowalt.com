@@ -21,7 +21,9 @@ const isExternal = href.startsWith('http');
     rel={isExternal ? 'noopener noreferrer' : undefined}
     class="inline-flex items-center whitespace-nowrap hover:underline"
   >
-    {iconName && <Icon name={iconName} class="mr-2 h-4 w-4" />}{buttonText}
+    {iconName && <Icon name={iconName} class="mr-1.5 h-4 w-4 shrink-0" />}{
+      buttonText
+    }
   </a>
   <span>{last}</span>
 </div>
@@ -31,6 +33,7 @@ const isExternal = href.startsWith('http');
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: baseline;
     gap: 0.25rem 0.5rem;
   }
 </style>
