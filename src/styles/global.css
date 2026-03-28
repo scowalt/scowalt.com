@@ -12,7 +12,7 @@
     line-height: 1.65;
     font-feature-settings: 'liga', 'kern';
     text-rendering: optimizeLegibility;
-    color-scheme: dark light;
+    color-scheme: dark;
   }
 }
 
