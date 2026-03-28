@@ -19,11 +19,16 @@ const isExternal = href.startsWith('http');
     href={href}
     target={isExternal ? '_blank' : undefined}
     rel={isExternal ? 'noopener noreferrer' : undefined}
-    class="inline-flex items-center whitespace-nowrap hover:underline"
+    class="whitespace-nowrap hover:underline"
   >
-    {iconName && <Icon name={iconName} class="mr-1.5 h-4 w-4 shrink-0" />}{
-      buttonText
-    }
+    {
+      iconName && (
+        <Icon
+          name={iconName}
+          class="mr-1.5 inline-block h-4 w-4 shrink-0 align-text-bottom"
+        />
+      )
+    }{buttonText}
   </a>
   <span>{last}</span>
 </div>
