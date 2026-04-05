@@ -14,6 +14,11 @@
       "matchUpdateTypes": ["major"],
       "automerge": false,
       "addLabels": ["major-update"]
+    },
+    {
+      "matchManagers": ["terraform-version"],
+      "matchFileNames": ["opentofu/**"],
+      "enabled": false
     }
   ]
 }
