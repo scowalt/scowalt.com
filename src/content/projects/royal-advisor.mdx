@@ -11,17 +11,13 @@ order: 2
 
 ## Why I Built This
 
-[Majesty: The Fantasy Kingdom Sim](https://en.wikipedia.org/wiki/Majesty:_The_Fantasy_Kingdom_Sim) is a game I loved as a kid. The Royal Advisor, who narrates everything happening in your kingdom, is one of the most memorable characters. His dry, theatrical delivery is burned into my memory.
-
-I wanted to bring that voice back to life. Not as a mod or a remix, but as something you could type any text into and hear him say it. A love letter to the game and the character.
+The Royal Advisor from [Majesty Gold HD](https://en.wikipedia.org/wiki/Majesty:_The_Fantasy_Kingdom_Sim) is one of my favorite video game characters. I wanted to bring his voice back to life as something you could type any text into and hear him say.
 
 ## How I Built It
 
-The voice model is trained using [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS), an open-source voice cloning system. I extracted audio samples from the original game files, cleaned them up, and trained the model on my home GPU.
+The voice model is trained using [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS), an open-source voice cloning system. I used Claude to extract and clean audio samples from the original game files, then trained the model on my home GPU.
 
-The frontend is an Astro site with a medieval-themed UI: dark stone textures, parchment elements, and gold accents. You type a "decree" and the page sends it to the inference API running on my home machine, which returns the generated audio.
-
-The inference backend is a Python API wrapping GPT-SoVITS. It uses a reference audio clip from the original game to guide the voice cloning at inference time.
+The inference backend is a Python API wrapping GPT-SoVITS, using a reference audio clip from the original game to guide voice cloning at request time. It runs on my home machine.
 
 ## What I'm Most Proud Of
 
