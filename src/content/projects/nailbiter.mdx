@@ -2,7 +2,6 @@
 title: Nailbiter
 description: Quantitative excitement scores for live sporting events. Cut through the media hype and see which games are actually worth watching.
 screenshot: nailbiter.png
-highlightHeading: What I'm Most Proud Of
 techStack:
   [
     'SolidJS',
@@ -29,7 +28,3 @@ The backend is a hybrid C#/F# .NET 10 app. F# handles all the service logic: scr
 For live games, the excitement score is the cumulative sum of win probability swings throughout the game. The more the lead changes and the closer the game stays, the higher the score. For upcoming games, a separate hype score weighs stakes (playoff implications, team records), quality (team ratings), and closeness (how even the matchup is), with sport-specific tuning.
 
 All odds snapshots are stored in TimescaleDB, a PostgreSQL extension built for time-series data. The frontend is a SolidJS app that receives real-time updates via GraphQL subscriptions.
-
-## What I'm Most Proud Of
-
-The hybrid C#/F# architecture. I wanted to use F# for its expressiveness in domain logic, but Hot Chocolate (the GraphQL library) doesn't have great F# support. Rather than fight the tooling, I split the backend into three projects: F# for services, C# for the GraphQL layer and host, and a shared project for EF Core entities. It took a careful incremental migration to get there without breaking production, but the result is clean boundaries between the domain logic and the infrastructure.
