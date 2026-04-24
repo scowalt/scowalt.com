@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  screenshot: string;
+  slug: string;
+}
+
+const { title, description, screenshot, slug } = Astro.props;
+---
+
+<a
+  href={`/projects/${slug}`}
+  class="group flex flex-col gap-4 rounded-lg p-4 transition-colors hover:bg-white/5 md:flex-row md:gap-6"
+>
+  <img
+    src={`/images/projects/${screenshot}`}
+    alt={`Screenshot of ${title}`}
+    class="aspect-video w-full rounded-md object-cover md:w-64 md:shrink-0"
+  />
+  <div class="flex flex-col justify-center">
+    <h2
+      class="text-xl font-semibold text-white group-hover:text-[rgb(var(--accent-light))]"
+    >
+      {title}
+    </h2>
+    <p class="mt-2 text-gray-400">{description}</p>
+  </div>
+</a>

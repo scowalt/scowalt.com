@@ -1,0 +1,70 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  screenshot: string;
+  techStack: string[];
+  url?: string | undefined;
+  repo?: string | undefined;
+}
+
+const { title, description, screenshot, techStack, url, repo } = Astro.props;
+---
+
+<Layout title={`${title} - Scott Walters`} description={description}>
+  <main
+    class="mx-auto min-h-screen w-full max-w-[70ch] px-6 py-16 text-gray-300 lg:py-24"
+  >
+    <a href="/projects" class="mb-8 inline-block text-sm hover:underline">
+      &larr; Back to Projects
+    </a>
+
+    <img
+      src={`/images/projects/${screenshot}`}
+      alt={`Screenshot of ${title}`}
+      class="mb-8 w-full rounded-lg object-cover"
+    />
+
+    <h1 class="mb-2 text-4xl font-bold text-white">
+      {
+        url ? (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white hover:text-[rgb(var(--accent-light))]"
+          >
+            {title}
+          </a>
+        ) : (
+          title
+        )
+      }
+    </h1>
+
+    <p class="mb-4 text-xs text-gray-500">
+      {techStack.join(' · ')}
+    </p>
+
+    {
+      repo && (
+        <div class="mb-8 flex gap-4 text-sm">
+          <a
+            href={repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:underline"
+          >
+            Source Code &rarr;
+          </a>
+        </div>
+      )
+    }
+
+    <div class="prose prose-invert w-full">
+      <slot />
+    </div>
+  </main>
+</Layout>

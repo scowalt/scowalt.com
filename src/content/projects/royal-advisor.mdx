@@ -1,0 +1,24 @@
+---
+title: The Royal Advisor
+description: An AI voice clone of the Royal Advisor from Majesty Gold HD. A love letter to a childhood game.
+screenshot: royal-advisor.png
+highlightHeading: What I'm Most Proud Of
+techStack:
+  ['Astro', 'TypeScript', 'Tailwind CSS', 'GPT-SoVITS', 'Python', 'NVIDIA GPU']
+url: https://absenteesurgeon.com/advisor
+order: 2
+---
+
+## Why I Built This
+
+The Royal Advisor from [Majesty Gold HD](https://en.wikipedia.org/wiki/Majesty:_The_Fantasy_Kingdom_Sim) is one of my favorite video game characters. I wanted to bring his voice back to life as something you could type any text into and hear him say.
+
+## How I Built It
+
+The voice model is trained using [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS), an open-source voice cloning system. I used Claude to extract and clean audio samples from the original game files, then trained the model on my home GPU.
+
+The inference backend is a Python API wrapping GPT-SoVITS, running on my home GPU.
+
+## What I'm Most Proud Of
+
+I tend to be a perfectionist, so this project was a good exercise in shipping something "good enough." The voice model isn't perfect, the infrastructure is held together with duct tape, and it'll probably break eventually. But it works and I shipped it instead of endlessly tweaking it.
