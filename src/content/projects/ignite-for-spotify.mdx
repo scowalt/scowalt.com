@@ -1,0 +1,37 @@
+---
+title: Ignite for Spotify
+description: Find playable Rocksmith songs from your Spotify playlists — bridging two worlds that surprisingly never connected.
+screenshot: ignite-for-spotify.png
+highlightHeading: What I'm Most Proud Of
+techStack:
+  [
+    '.NET 10',
+    'SolidJS',
+    'TypeScript',
+    'Tailwind CSS',
+    'Turso SQLite',
+    'Docker',
+    'Caddy',
+  ]
+url: https://igniteforspotify.com
+repo: https://github.com/scowalt/ignite-for-spotify-2
+order: 1
+---
+
+## Why I Built This
+
+I play guitar using [Rocksmith](https://www.ubisoft.com/en-us/game/rocksmith/plus), a game that teaches you real guitar by letting you play along to songs. The community has created thousands of custom songs (CDLC) on [CustomsForge](https://customsforge.com/), but there was no way to connect them to my Spotify playlists.
+
+I wanted to take a playlist of songs I already love listening to and instantly see which ones I could learn to play. That bridge didn't exist, so I built it.
+
+## How I Built It
+
+The backend is a .NET 10 API that uses Hangfire to periodically scrape the CustomsForge CDLC catalog into a Turso SQLite database. When you connect your Spotify account and pick a playlist, it cross-references your tracks against the catalog.
+
+The frontend is a SolidJS app with TanStack Query for data fetching and SignalR for real-time updates during long-running match operations.
+
+It runs on a Hetzner VPS behind Caddy, deployed as Docker containers via GitHub Actions. The server is IPv6-only, which led to some interesting Docker networking challenges.
+
+## What I'm Most Proud Of
+
+The core matching problem is deceptively tricky. Song titles on Spotify don't always match CDLC titles — there are remasters, live versions, spelling variations, and featuring credits that differ between platforms. Getting the fuzzy matching right so you actually find the songs you're looking for was the most satisfying part of the build.
