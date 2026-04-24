@@ -27,35 +27,38 @@ const { title, description, screenshot, techStack, url, repo } = Astro.props;
       class="mb-8 w-full rounded-lg object-cover"
     />
 
-    <h1 class="mb-2 text-4xl font-bold text-white">{title}</h1>
+    <h1 class="mb-2 text-4xl font-bold text-white">
+      {
+        url ? (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white hover:text-[rgb(var(--accent-light))]"
+          >
+            {title}
+          </a>
+        ) : (
+          title
+        )
+      }
+    </h1>
 
     <p class="mb-4 text-xs text-gray-500">
       {techStack.join(' · ')}
     </p>
 
     {
-      (url || repo) && (
+      repo && (
         <div class="mb-8 flex gap-4 text-sm">
-          {url && (
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:underline"
-            >
-              Live Site &rarr;
-            </a>
-          )}
-          {repo && (
-            <a
-              href={repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:underline"
-            >
-              Source Code &rarr;
-            </a>
-          )}
+          <a
+            href={repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:underline"
+          >
+            Source Code &rarr;
+          </a>
         </div>
       )
     }
