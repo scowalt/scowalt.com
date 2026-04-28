@@ -17,7 +17,7 @@
     "prepare": "[ -n \"$CI\" ] || lefthook install"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.8",
+    "@astrojs/check": "0.9.9",
     "@eslint/js": "10.0.1",
     "@tailwindcss/typography": "0.5.19",
     "@typescript-eslint/eslint-plugin": "8.59.1",
