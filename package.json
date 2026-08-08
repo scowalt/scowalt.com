@@ -22,7 +22,7 @@
     "@tailwindcss/typography": "0.5.20",
     "@typescript-eslint/eslint-plugin": "8.66.0",
     "@typescript-eslint/parser": "8.66.0",
-    "cspell": "9.8.0",
+    "cspell": "10.0.1",
     "eslint": "10.8.1",
     "eslint-plugin-astro": "1.7.0",
     "globals": "17.9.0",
