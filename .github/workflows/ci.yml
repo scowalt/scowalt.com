@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6.1.0
+        uses: actions/checkout@v7.0.1
 
       - name: Read Bun version from mise
         id: bunversion
@@ -46,7 +46,7 @@ jobs:
         working-directory: ./opentofu
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6.1.0
+        uses: actions/checkout@v7.0.1
 
       - name: Read OpenTofu version
         id: tofuversion
