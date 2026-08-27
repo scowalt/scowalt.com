@@ -1,0 +1,30 @@
+---
+title: Nailbiter
+description: Quantitative excitement scores for live sporting events. Cut through the media hype and see which games are actually worth watching.
+screenshot: nailbiter.png
+techStack:
+  [
+    'SolidJS',
+    'F#',
+    'C#',
+    '.NET 10',
+    'TimescaleDB',
+    'GraphQL',
+    'Tailwind CSS',
+    'Docker',
+  ]
+url: https://live.nailbiter.app
+order: 2
+---
+
+## Why I Built This
+
+Media companies are incentivized to convince you every game is must-watch TV. They hype up unimportant blowouts the same way they hype up genuine classics. I wanted a site that cuts through that noise and shows you quantitatively which games are interesting and how interesting they are.
+
+## How I Built It
+
+The backend is a hybrid C#/F# .NET 10 app. F# handles all the service logic: scraping live win probabilities from ESPN every 30 seconds, pulling pregame odds from Kalshi, and calculating excitement scores. C# hosts the ASP.NET Core server and the Hot Chocolate GraphQL API.
+
+For live games, the excitement score is the cumulative sum of win probability swings throughout the game. The more the lead changes and the closer the game stays, the higher the score. For upcoming games, a separate hype score weighs stakes (playoff implications, team records), quality (team ratings), and closeness (how even the matchup is), with sport-specific tuning.
+
+All odds snapshots are stored in TimescaleDB, a PostgreSQL extension built for time-series data. The frontend is a SolidJS app that receives real-time updates via GraphQL subscriptions.

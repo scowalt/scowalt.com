@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7.0.1
 
       - name: Read Bun version from mise
         id: bunversion
         run: echo "version=$(grep '^bun' .mise.toml | cut -d'"' -f2)" >> $GITHUB_OUTPUT
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@v2.2.0
         with:
           bun-version: ${{ steps.bunversion.outputs.version }}
 
@@ -46,22 +46,22 @@ jobs:
         working-directory: ./opentofu
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7.0.1
 
       - name: Read OpenTofu version
         id: tofuversion
         run: echo "version=$(cat .opentofu-version)" >> $GITHUB_OUTPUT
 
       - name: Setup OpenTofu
-        uses: opentofu/setup-opentofu@v2
+        uses: opentofu/setup-opentofu@v2.0.2
         with:
           tofu_version: ${{ steps.tofuversion.outputs.version }}
 
       - name: Setup Doppler CLI
-        uses: dopplerhq/cli-action@v4
+        uses: dopplerhq/cli-action@v4.0.1
 
       - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v6
+        uses: terraform-linters/setup-tflint@v6.3.0
         with:
           tflint_version: latest
 
