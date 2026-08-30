@@ -3,6 +3,7 @@ node_modules
 
 # astro
 .astro
+.wrangler
 
 # env
 .env

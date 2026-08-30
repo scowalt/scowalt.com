@@ -10,8 +10,8 @@ const projects = defineCollection({
     screenshot: z.string(),
     highlightHeading: z.string().optional(),
     techStack: z.array(z.string()),
-    url: z.string().url().optional(),
-    repo: z.string().url().optional(),
+    url: z.url().optional(),
+    repo: z.url().optional(),
     order: z.number(),
   }),
 });
