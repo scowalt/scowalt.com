@@ -1,5 +1,5 @@
 name = "scowalt-com"
-main = "dist/_worker.js/index.js"
+main = "@astrojs/cloudflare/entrypoints/server"
 # Use the latest compatibility date so we can consume new Cloudflare runtime fixes/features.
 # Remember to review the flag list below whenever bumping the date to keep behaviour consistent.
 compatibility_date = "2025-10-14"
