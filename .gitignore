@@ -1,11 +1,8 @@
-# node
 node_modules
 
-# astro
 .astro
 .wrangler
 
-# env
 .env
 .env.local
 .env.development.local
@@ -14,7 +11,6 @@ node_modules
 
 dist
 
-# opentofu
 .terraform/
 .terraform.lock.hcl
 terraform.tfstate
@@ -25,7 +21,6 @@ terraform.tfstate.backup
 
 *.log
 
-# lefthook
 lefthook-local.yml
 
 tmp

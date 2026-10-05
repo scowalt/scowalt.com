@@ -50,7 +50,6 @@ const headingAutolinksPlugin = {
   },
 };
 
-// https://astro.build/config
 export default defineConfig({
   output: 'server',
   adapter: cloudflare({
