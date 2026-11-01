@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   quality-checks:
     name: Code Quality & Tests
@@ -16,7 +19,7 @@ jobs:
 
       - name: Read Bun version from mise
         id: bunversion
-        run: echo "version=$(grep '^bun' .mise.toml | cut -d'"' -f2)" >> $GITHUB_OUTPUT
+        run: echo "version=$(grep '^bun' .mise.toml | cut -d'"' -f2)" >> "$GITHUB_OUTPUT"
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2.2.0
@@ -50,15 +53,12 @@ jobs:
 
       - name: Read OpenTofu version
         id: tofuversion
-        run: echo "version=$(cat .opentofu-version)" >> $GITHUB_OUTPUT
+        run: echo "version=$(cat .opentofu-version)" >> "$GITHUB_OUTPUT"
 
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v2.0.2
         with:
           tofu_version: ${{ steps.tofuversion.outputs.version }}
-
-      - name: Setup Doppler CLI
-        uses: dopplerhq/cli-action@v4.0.1
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v6.3.1
@@ -68,15 +68,11 @@ jobs:
       - name: Check OpenTofu formatting
         run: tofu fmt -check
 
-      - name: Initialize OpenTofu
-        run: doppler run -- tofu init
-        env:
-          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+      - name: Initialize OpenTofu without remote state
+        run: tofu init -backend=false -input=false
 
       - name: Validate OpenTofu configuration
-        run: doppler run -- tofu validate
-        env:
-          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+        run: tofu validate
 
       - name: Run TFLint
         run: tflint
