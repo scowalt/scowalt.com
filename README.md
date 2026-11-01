@@ -1,6 +1,6 @@
 # scowalt.com
 
-This is an Astro site deployed to Cloueflare pages that will act as my personal landing page / business card.
+This is an Astro site hosted on Cloudflare Workers that acts as my personal landing page / business card.
 
 ## License
 
@@ -29,22 +29,13 @@ No trademark or endorsement rights are granted.
 
 ## Deployment
 
-This site deploys to **Cloudflare Workers** using the direct GitHub integration.
+The site runs on **Cloudflare Workers**. GitHub Actions handles pull-request
+validation and includes a gated production deployment job for `main`.
 
-### Setup
-
-1. **Connect to Cloudflare Workers**:
-   - Go to [Cloudflare Workers dashboard](https://dash.cloudflare.com/workers)
-   - Create a new Worker project
-   - Connect your GitHub repository using the GitHub integration
-
-2. **Build Configuration**:
-   - **Build Command**: `bun run build`
-   - **Build Output Directory**: `dist`
-
-3. **Custom Domain** (optional):
-   - Add your domain to Cloudflare (if not already)
-   - Configure routes in `wrangler.toml` or the Workers dashboard
+See [deployment and cutover instructions](DEPLOYMENT.md). The direct Cloudflare
+Git integration must be disconnected before enabling Actions deployment; never
+run both deployment controllers at once. Hosting, the Worker name, and DNS are
+independent of that controller change.
 
 ### Local Development
 
