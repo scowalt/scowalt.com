@@ -5,7 +5,7 @@ resource "github_branch_protection" "main" {
   required_status_checks {
     strict = true
     contexts = [
-      "Workers Builds: scowalt-com",
+      "Worker Build",
       "Code Quality & Tests",
       "OpenTofu Validation"
     ]

@@ -3,7 +3,7 @@ resource "github_repository" "scowalt_com" {
   description  = "My personal website"
   homepage_url = "https://scowalt.com"
 
-  visibility = "private"
+  visibility = "public"
 
   has_issues      = true
   has_projects    = false
