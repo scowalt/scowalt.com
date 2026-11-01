@@ -9,6 +9,7 @@ compatibility_flags = [
   "nodejs_compat_do_not_populate_process_env"
 ]
 preview_urls = true
+previews = {}
 
 [assets]
 directory = "dist"

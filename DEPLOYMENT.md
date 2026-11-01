@@ -1,9 +1,18 @@
 # Deployment
 
-## GitHub Actions pipeline
+## GitHub Actions validates; Cloudflare deploys
 
-`.github/workflows/ci.yml` runs these credential-free checks on pull requests and
-pushes to `main`:
+```text
+Pull request → GitHub Actions checks → protected merge to main
+                                            ↓
+                                Cloudflare build → scowalt-com Worker
+```
+
+Cloudflare's direct Git integration is the sole deployment controller. Keep its
+production branch set to `main`. Do not enable a second deployment workflow in
+GitHub Actions.
+
+The protected branch requires these credential-free Actions checks:
 
 - **Code Quality & Tests:** typechecking, linting and formatting.
 - **Worker Build:** build the Astro application and run Wrangler deployment
@@ -12,81 +21,57 @@ pushes to `main`:
   validation and TFLint. This job never plans or applies infrastructure.
 
 The separate **Comment-free source** workflow checks the source policy and its
-regression tests.
+regression tests. Required checks stay strict/up-to-date, as declared in
+`opentofu/branch-protection.tf`. A Cloudflare preview is not a required merge
+check, so fork contributors can validate their code without deployment access.
 
-Production deployment runs only after the three CI jobs succeed, and only when
-all of these conditions hold:
+GitHub Actions workflows use hosted runners and read-only token permissions.
+They do not reference repository secrets, deploy the Worker, or execute
+privileged `pull_request_target` or `workflow_run` jobs.
 
-- The repository is `scowalt/scowalt.com`.
-- The event is a push or manual workflow dispatch on `main`, never a pull request.
-- The repository variable `CLOUDFLARE_DEPLOYMENTS_ENABLED` is exactly `true`.
-- The `production` environment's deployment rules permit the job.
+## Worker Previews
 
-Configure that environment to allow the `main` branch only, not tags. The job
-serializes production deployments without cancelling an in-progress deployment
-and refuses to deploy a revision that is no longer the current `main` tip.
+Use the newer **Worker Previews** model rather than legacy version previews that
+use production settings. In Cloudflare's **Settings > Builds**, the preview
+command must invoke `wrangler preview`. Keep the project-local Wrangler version
+at least 4.135.0; this repository pins it in `package.json` and `bun.lock`.
 
-The job builds without deployment credentials. Only its final Wrangler step
-receives the GitHub secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
-Use a Cloudflare token scoped to the existing account and the permissions needed
-to deploy the existing Worker. Never supply production secrets to fork PRs,
-`pull_request_target`, or a workflow that executes untrusted PR artifacts.
+Preview settings belong in the Wrangler `previews` block. An empty block is
+sufficient for this site's static assets; it needs no production credentials,
+database bindings, or storage bindings. Any future preview resource binding must
+point to a preview-safe resource, not production data. Configure preview secrets
+separately in **Previews Base**; never commit their values.
 
-Wrangler uses the generated `dist/server/wrangler.json` and the existing
-`scowalt-com` Worker. `--keep-vars` preserves variables maintained in the
-Cloudflare dashboard. Do not change Worker names, routes, domains, storage
-bindings, or DNS as part of changing the deployment controller.
+Review Cloudflare build-time variables, secrets and repository/branch access
+separately from runtime preview settings. A public fork must not receive
+production credentials or access to a privileged build environment. GitHub's
+fork-token restrictions do not establish Cloudflare's policy. Only allow
+untrusted preview builds when their build-time and runtime access are verified
+safe; otherwise disable automatic preview builds and use Actions validation.
 
-## One-time cutover from Workers Builds
+The `preview_urls` setting alone does not establish isolated Worker Previews.
+Disabling future preview builds also does not necessarily remove old version
+preview URLs. Manage any historical preview exposure separately without deleting
+production resources.
 
-Do not enable Actions deployment until the old controller is disabled and its
-in-flight builds have finished. Changing GitHub repository visibility is a
-separate operation from deploying the site.
+## Production and rollback
 
-1. Keep `CLOUDFLARE_DEPLOYMENTS_ENABLED` unset or `false`. Review the configured
-   Cloudflare production/preview commands and retain a record of the current
-   production version for rollback.
-2. Open the migration PR. Wait for the existing required checks and the new
-   **Worker Build** check on the exact PR revision. The Actions deploy job must
-   be skipped on this PR.
-3. Configure GitHub's `production` environment for the `main` branch only. Verify
-   the two Cloudflare deployment secrets are configured without exposing values.
-4. At the coordinated cutover, replace only the required
-   **Workers Builds: scowalt-com** check with **Worker Build**, keeping the other
-   required checks and strict/up-to-date protection. Keep
-   `opentofu/branch-protection.tf` consistent. Merge normally while Actions
-   deployment remains disabled; do not bypass or weaken protection. Let any
-   final legacy production build settle before continuing.
-5. Disconnect this Worker's repository integration in Cloudflare's
-   **Settings > Builds**. Verify no Git-triggered production or preview builds
-   remain active or queued. Do not delete the Worker, domains, DNS, or data.
-6. Only after confirming the old controller has stopped, set
-   `CLOUDFLARE_DEPLOYMENTS_ENABLED=true`. Run the **CI** workflow manually on
-   `main` if the latest merge occurred while deployment was disabled.
-7. Confirm the Actions deployment succeeded for the expected commit, verify the
-   production site, and confirm Cloudflare did not start a second Git-triggered
-   deployment. Publish the source only after the remaining publication checks
-   and the visibility configuration are reconciled. The public visibility in
-   `opentofu/repository.tf` is the desired final state, not permission to apply
-   it before the cutover gates are satisfied.
-
-If any required check or controller state cannot be verified, leave the enable
-variable off and stop. A successful Actions run alone does not establish that
-all GitHub protection requirements passed.
-
-## Rollback and pausing deployment
-
-Set `CLOUDFLARE_DEPLOYMENTS_ENABLED=false` to prevent subsequent Actions
-deployments. This does not stop an already-running deployment; wait for its
-result before taking another deployment action.
+Cloudflare handles the production build/deploy after a protected merge. Check
+its deployment result and verify the site separately from Actions CI results.
+Keep the existing `scowalt-com` Worker, domain, DNS, variables and data intact.
 
 Use a reviewed revert through the same protected PR path for normal application
 rollback, or an explicitly approved rollback to a known Cloudflare Worker
-version. Do not re-enable the legacy Git integration while Actions deployment
-is enabled or running.
+version. Do not add a competing Actions deployment controller for rollback.
+
+A previously prepared Actions deployment job was removed before activation.
+Keep the repository variable `CLOUDFLARE_DEPLOYMENTS_ENABLED=false` as a defensive
+guard against rerunning historical workflows that contained that job. Existing
+Cloudflare secrets in GitHub are not used by current workflows; this change does
+not rotate or delete them.
 
 ## References
 
-- [Cloudflare deployment from GitHub Actions](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/)
-- [Disconnecting Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/#disconnecting-builds)
-- [GitHub deployment environments](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments)
+- [Cloudflare Git integration](https://developers.cloudflare.com/workers/ci-cd/builds/git-integration/)
+- [Production branches and Worker Previews](https://developers.cloudflare.com/workers/ci-cd/builds/build-branches/)
+- [Preview configuration](https://developers.cloudflare.com/workers/previews/configuration/)

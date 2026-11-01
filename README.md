@@ -29,13 +29,12 @@ No trademark or endorsement rights are granted.
 
 ## Deployment
 
-The site runs on **Cloudflare Workers**. GitHub Actions handles pull-request
-validation and includes a gated production deployment job for `main`.
+The site runs on **Cloudflare Workers**. GitHub Actions validates pull requests;
+Cloudflare's Git integration builds and deploys production from protected `main`.
+Cloudflare is the sole deployment controller.
 
-See [deployment and cutover instructions](DEPLOYMENT.md). The direct Cloudflare
-Git integration must be disconnected before enabling Actions deployment; never
-run both deployment controllers at once. Hosting, the Worker name, and DNS are
-independent of that controller change.
+See [deployment and preview configuration](DEPLOYMENT.md). GitHub Actions never
+deploys the site or receives Cloudflare deployment credentials.
 
 ### Local Development
 
