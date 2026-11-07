@@ -11,14 +11,10 @@ projects.sort((a, b) => a.data.order - b.data.order);
   title="Projects - Scott Walters"
   description="A selection of projects I've built: why I built them, how, and what I'm most proud of."
 >
-  <main
-    class="mx-auto min-h-screen w-full max-w-[70ch] px-6 py-16 text-gray-300 lg:py-24"
-  >
-    <a href="/" class="mb-8 inline-block text-sm hover:underline">
-      &larr; Home
-    </a>
-    <h1 class="mb-8 text-4xl font-bold text-white">Projects</h1>
-    <div class="space-y-2">
+  <main class="page-column">
+    <a href="/" class="back-link"> &larr; Home </a>
+    <h1 class="page-title">Projects</h1>
+    <div class="project-list">
       {
         projects.map((project) => (
           <ProjectCard
@@ -32,3 +28,15 @@ projects.sort((a, b) => a.data.order - b.data.order);
     </div>
   </main>
 </Layout>
+
+<style>
+  @layer components {
+    .page-title {
+      margin-bottom: var(--space-8);
+    }
+
+    .project-list > :global(:not(:last-child)) {
+      margin-block-end: var(--space-2);
+    }
+  }
+</style>

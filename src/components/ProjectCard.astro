@@ -9,21 +9,82 @@ interface Props {
 const { title, description, screenshot, slug } = Astro.props;
 ---
 
-<a
-  href={`/projects/${slug}`}
-  class="group flex flex-col gap-4 rounded-lg p-4 transition-colors hover:bg-white/5 md:flex-row md:gap-6"
->
+<a href={`/projects/${slug}`} class="project-card">
   <img
     src={`/images/projects/${screenshot}`}
     alt={`Screenshot of ${title}`}
-    class="aspect-video w-full rounded-md object-cover md:w-64 md:shrink-0"
+    class="thumbnail"
   />
-  <div class="flex flex-col justify-center">
-    <h2
-      class="text-xl font-semibold text-white group-hover:text-[rgb(var(--accent-light))]"
-    >
-      {title}
-    </h2>
-    <p class="mt-2 text-gray-400">{description}</p>
+  <div class="summary">
+    <h2 class="title">{title}</h2>
+    <p class="description">{description}</p>
   </div>
 </a>
+
+<style>
+  @layer components {
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      transition-property:
+        color, background-color, border-color, outline-color,
+        text-decoration-color, fill, stroke;
+      transition-timing-function: var(--ease-standard);
+      transition-duration: var(--duration-fast);
+    }
+
+    .thumbnail {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+    }
+
+    .summary {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .title {
+      font-size: var(--text-xl);
+      line-height: var(--leading-xl);
+      font-weight: 600;
+      color: var(--color-white);
+    }
+
+    .description {
+      margin-top: var(--space-2);
+      color: var(--color-gray-400);
+    }
+
+    @media (hover: hover) {
+      .project-card:hover {
+        background-color: color-mix(
+          in oklab,
+          var(--color-white) 5%,
+          transparent
+        );
+      }
+
+      .project-card:hover .title {
+        color: rgb(var(--accent-light));
+      }
+    }
+
+    @media (width >= 48rem) {
+      .project-card {
+        flex-direction: row;
+        gap: var(--space-6);
+      }
+
+      .thumbnail {
+        width: 16rem;
+        flex-shrink: 0;
+      }
+    }
+  }
+</style>

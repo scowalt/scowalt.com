@@ -3,7 +3,6 @@ import cloudflare from '@astrojs/cloudflare';
 import { satteri, satteriHeadingIdsPlugin } from '@astrojs/markdown-satteri';
 import icon from 'astro-icon';
 import mdx from '@astrojs/mdx';
-import tailwindcss from '@tailwindcss/vite';
 
 const headingAutolinksPlugin = {
   name: 'heading-autolinks',
@@ -81,8 +80,5 @@ export default defineConfig({
     processor: satteri({
       hastPlugins: [satteriHeadingIdsPlugin, headingAutolinksPlugin],
     }),
-  },
-  vite: {
-    plugins: [tailwindcss()],
   },
 });

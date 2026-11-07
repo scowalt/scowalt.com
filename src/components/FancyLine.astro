@@ -19,26 +19,40 @@ const isExternal = href.startsWith('http');
     href={href}
     target={isExternal ? '_blank' : undefined}
     rel={isExternal ? 'noopener noreferrer' : undefined}
-    class="whitespace-nowrap hover:underline"
+    class="link"
   >
-    {
-      iconName && (
-        <Icon
-          name={iconName}
-          class="mr-1 inline-block h-[1em] w-[1em] shrink-0 align-[-0.125em]"
-        />
-      )
-    }{buttonText}
+    {iconName && <Icon name={iconName} class="icon" />}{buttonText}
   </a>
   <span>{last}</span>
 </div>
 
 <style>
-  .fancy-line {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25rem 0.5rem;
+  @layer components {
+    .fancy-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-1) var(--space-2);
+    }
+
+    .link {
+      white-space: nowrap;
+    }
+
+    @media (hover: hover) {
+      .link:hover {
+        text-decoration-line: underline;
+      }
+    }
+
+    .icon {
+      display: inline-block;
+      margin-right: var(--space-1);
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
+      vertical-align: -0.125em;
+    }
   }
 </style>

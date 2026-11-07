@@ -5,19 +5,56 @@ Astro.response.status = 404;
 ---
 
 <Layout title="Page Not Found | Scott Walters">
-  <main
-    class="flex min-h-screen flex-col items-center justify-center gap-6 p-6 text-center text-gray-300"
-  >
-    <h1 class="text-5xl font-black">404</h1>
-    <p class="max-w-lg text-lg">
+  <main class="centered-page">
+    <h1 class="status">404</h1>
+    <p class="message">
       I can&apos;t find the page you were looking for. It might have moved, or
       maybe there&apos;s a typo in the URL.
     </p>
-    <a
-      class="rounded-full bg-[rgb(var(--accent))] px-6 py-3 text-base font-semibold text-white transition hover:bg-[rgb(var(--accent-dark))]"
-      href="/"
-    >
-      Back to the homepage
-    </a>
+    <a class="button-primary" href="/">Back to the homepage</a>
   </main>
 </Layout>
+
+<style>
+  @layer components {
+    .centered-page {
+      gap: var(--space-6);
+      padding: var(--space-6);
+    }
+
+    .status {
+      font-size: var(--text-5xl);
+      line-height: var(--leading-5xl);
+      font-weight: 900;
+    }
+
+    .message {
+      max-width: 32rem;
+      font-size: var(--text-lg);
+      line-height: var(--leading-lg);
+    }
+
+    .button-primary {
+      border-radius: var(--radius-full);
+      background-color: rgb(var(--accent));
+      padding: var(--space-3) var(--space-6);
+      font-size: var(--text-base);
+      line-height: var(--leading-base);
+      font-weight: 600;
+      color: var(--color-white);
+      transition-property:
+        color, background-color, border-color, outline-color,
+        text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+        translate, scale, rotate, filter, backdrop-filter, display,
+        content-visibility, overlay, pointer-events;
+      transition-timing-function: var(--ease-standard);
+      transition-duration: var(--duration-fast);
+    }
+
+    @media (hover: hover) {
+      .button-primary:hover {
+        background-color: rgb(var(--accent-dark));
+      }
+    }
+  }
+</style>

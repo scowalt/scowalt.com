@@ -23,9 +23,27 @@ No trademark or endorsement rights are granted.
 ## Tech Stack
 
 - Astro
-- Tailwind
+- Plain CSS with cascade layers
 - Cloudflare Workers
 - Renovate
+
+## Styling
+
+The site uses plain CSS without a framework. `src/styles/global.css` declares
+the cascade order once, as `@layer theme, base, components;`:
+
+- `theme` holds the design tokens as CSS custom properties: colors, font
+  stacks, font sizes, spacing, and radii.
+- `base` holds the reset and the element defaults.
+- `components` holds the shared named classes, such as `.page-column`,
+  `.back-link`, and `.prose` for Markdown content.
+
+Styles that only one component uses live in that component's scoped `<style>`
+block, inside `@layer components`. Do not use `!important`.
+
+Custom properties do not work in media queries, so the breakpoints are
+literal values: `48rem` (768px) for tablet layouts and `64rem` (1024px) for
+desktop layouts.
 
 ## Deployment
 
