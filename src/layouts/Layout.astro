@@ -28,32 +28,3 @@ const {
     <slot />
   </body>
 </html>
-<style is:global>
-  :root {
-    --accent: 0, 123, 255;
-    --accent-light: 153, 204, 255;
-    --accent-dark: 0, 86, 179;
-
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
-  html {
-    font-family: system-ui, sans-serif;
-    background-color: #212121;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-</style>

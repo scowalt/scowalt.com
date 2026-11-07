@@ -11,13 +11,9 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title}>
-  <main
-    class="mx-auto min-h-screen w-full max-w-[70ch] px-6 py-16 text-gray-300 lg:py-24"
-  >
-    <a href="/" class="mb-8 inline-block text-sm hover:underline">
-      &larr; Home
-    </a>
-    <div class="prose prose-invert w-full">
+  <main class="page-column">
+    <a href="/" class="back-link"> &larr; Home </a>
+    <div class="prose">
       <slot />
     </div>
   </main>
