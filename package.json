@@ -19,7 +19,6 @@
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "@eslint/js": "10.0.1",
-    "@tailwindcss/typography": "0.5.20",
     "@typescript-eslint/eslint-plugin": "8.70.1",
     "@typescript-eslint/parser": "8.70.1",
     "cspell": "10.3.4",
@@ -29,7 +28,6 @@
     "playwright": "1.65.0",
     "prettier": "3.9.9",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.8.1",
     "remark-cli": "12.0.1",
     "remark-mdx": "3.1.1",
     "remark-preset-lint-consistent": "6.0.1",
@@ -45,10 +43,8 @@
     "@astrojs/mdx": "7.0.8",
     "@iconify-json/cib": "1.2.3",
     "@iconify-json/mdi": "1.2.3",
-    "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.5",
-    "astro-icon": "1.2.0",
-    "tailwindcss": "4.3.3"
+    "astro-icon": "1.2.0"
   },
   "overrides": {
     "@eslint/plugin-kit": "0.7.3",
