@@ -5,22 +5,23 @@ This directory contains OpenTofu configuration for managing the GitHub repositor
 ## Setup
 
 1. Install OpenTofu: <https://opentofu.org/docs/intro/install/>
-2. Set up GitHub authentication (requires GITHUB_TOKEN environment variable or GitHub CLI)
-3. Initialize OpenTofu: `tofu init`
+2. Run every command through Mission Control's Doppler config. It supplies the
+   R2 state credentials and the `GITHUB_TOKEN` the GitHub provider uses:
+
+   ```bash
+   alias mc-tofu='doppler run --project mission-control --config dev --only-secrets AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,GITHUB_TOKEN -- tofu'
+   ```
+
+3. Initialize OpenTofu: `mc-tofu init`
+
+CI validates without remote state (`tofu init -backend=false`) and needs no
+Doppler access.
 
 ## Usage
 
-- **Plan changes**: `tofu plan`
-- **Apply changes**: `tofu apply`
-- **Check current state**: `tofu show`
-
-## Authentication
-
-This configuration uses the GitHub provider, which can authenticate via:
-
-- GitHub CLI (`gh auth login`)
-- GITHUB_TOKEN environment variable
-- GitHub App installation
+- **Plan changes**: `mc-tofu plan`
+- **Apply changes**: `mc-tofu apply`
+- **Check current state**: `mc-tofu show`
 
 ## What's Managed
 
