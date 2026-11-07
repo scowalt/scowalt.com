@@ -22,7 +22,7 @@ All commands run from the repository root. The helpers live in `.agents/skills/v
 .agents/skills/verify/scripts/launch.sh preview
 ```
 
-`preview` is the default and the mode to use for proof. It runs `bun run build` and then `portless run --tailscale astro preview`. That command serves `dist/` in workerd with the production `wrangler.json`, which includes `run_worker_first` and the `404-page` fallback. `dev` runs `portless run --tailscale astro dev`. Do not use `dev` for proof: it currently serves pages without CSS, scripts, or images (see [the Gotchas in the feature map](features/README.md#gotchas)).
+`preview` is the default and the mode to use for proof. It runs `bun run build` and then `portless run --tailscale astro preview`. That command serves `dist/` in workerd with the production `wrangler.json`, which includes `run_worker_first` and the `404-page` fallback. `dev` runs `portless run --tailscale astro dev` and serves source changes with HMR, so use it to iterate. `dev` differs from production: Vite serves `public/` and the CSS and scripts, and pages send no CSP. Use `preview` for any claim about production behavior. `dev` works only while `run_worker_first` lists page routes and not `/*` (see [the Gotchas in the feature map](features/README.md#gotchas)).
 
 The script does these steps:
 
