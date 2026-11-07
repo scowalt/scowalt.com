@@ -14,6 +14,13 @@
     text-rendering: optimizeLegibility;
     color-scheme: dark;
   }
+
+  a {
+    color: rgb(var(--accent-light));
+  }
+  a:hover {
+    color: rgb(var(--accent));
+  }
 }
 
 @layer utilities {
@@ -33,16 +40,15 @@
   }
 
   .prose :where(a) {
-    color: #7bc8ff;
+    color: rgb(var(--accent-light));
     text-decoration: underline;
     text-underline-offset: 0.18em;
     transition: color 0.15s ease;
   }
   .prose :where(a:hover) {
-    color: #a5dcff;
+    color: rgb(var(--accent));
   }
   .prose :where(a:focus-visible) {
-    color: #a5dcff;
     outline: 2px solid rgb(112 181 255);
     outline-offset: 3px;
   }
@@ -169,7 +175,6 @@
     height: 1.75rem;
     margin-left: 0.5rem;
     border-radius: 9999px;
-    color: #9ebfe6;
     text-decoration: none;
     outline: 1px solid transparent;
     transition:
@@ -182,9 +187,6 @@
   .prose :where(.footnotes .footnote-backref:focus-visible) {
     outline: 2px solid rgb(112 181 255);
     outline-offset: 2px;
-  }
-  .prose :where(.footnotes a) {
-    color: #7bc8ff;
   }
 }
 
