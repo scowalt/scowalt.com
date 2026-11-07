@@ -80,7 +80,7 @@ if [ -n "${TAILSCALE_URL:-}" ]; then
   if [ "$ts_code" = 200 ]; then
     ok "tailnet $TAILSCALE_URL -> 200"
   else
-    warn "tailnet $TAILSCALE_URL -> $ts_code; Vite rejects the ts.net Host header unless allowedHosts lists it (local URL is still usable)"
+    warn "tailnet $TAILSCALE_URL -> $ts_code; a 403 means server.allowedHosts in astro.config.mjs does not allow the PORTLESS_TAILSCALE_URL hostname (local URL is still usable)"
   fi
 fi
 
