@@ -50,8 +50,17 @@ const headingAutolinksPlugin = {
   },
 };
 
+const { PORT, HOST, PORTLESS_TAILSCALE_URL } = process.env;
+
 export default defineConfig({
   output: 'server',
+  server: {
+    ...(PORT && { port: Number(PORT) }),
+    ...(HOST && { host: HOST }),
+    allowedHosts: PORTLESS_TAILSCALE_URL
+      ? [new URL(PORTLESS_TAILSCALE_URL).hostname]
+      : [],
+  },
   adapter: cloudflare({
     imageService: { build: 'compile', runtime: 'passthrough' },
   }),

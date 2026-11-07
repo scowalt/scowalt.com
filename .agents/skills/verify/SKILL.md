@@ -55,7 +55,7 @@ This check is read-only. Run it before driving, and again whenever something loo
 - `dev` mode does not serve `/@vite/client` and `/images/me.webp`.
 - In `preview` mode, any file under `src/` or `public/`, `astro.config.mjs`, or `package.json` is newer than `dist/server/entry.mjs`. The build is stale, so launch again.
 
-A tailnet URL that returns 403 is only a warning. Vite's `allowedHosts` rejects the `ts.net` host, and the local URL still works.
+A tailnet URL that does not return 200 is only a warning, because the local URL still works. A 403 means `server.allowedHosts` in `astro.config.mjs` no longer allows the hostname in `PORTLESS_TAILSCALE_URL` (see [the Gotchas](features/README.md#gotchas)).
 
 ## Drive
 
