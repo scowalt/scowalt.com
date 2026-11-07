@@ -60,14 +60,12 @@ export default defineConfig({
   },
   integrations: [icon(), mdx()],
   security: {
-    contentSecurityPolicy: {
-      directives: {
-        'default-src': ["'self'"],
-        'script-src': ["'self'"],
-        'style-src': ["'self'"],
-        'img-src': ["'self'", 'data:'],
-        'font-src': ["'self'"],
-      },
+    csp: {
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data:",
+        "font-src 'self'",
+      ],
     },
   },
   markdown: {
