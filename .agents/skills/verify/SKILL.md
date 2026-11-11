@@ -1,11 +1,11 @@
 ---
 name: verify
-description: Launch scowalt.com (the Astro site that runs on Cloudflare Workers) locally through Portless, drive its pages in headless Chromium the way a visitor does, and capture screenshots plus a pass/fail report. Use to prove a change to pages, layouts, components, styles, MDX content, project entries, images, middleware, or Worker config before you call it done.
+description: Launch scowalt.com (the static Astro site that Cloudflare Workers serves as static assets) locally through Portless, drive its pages in headless Chromium the way a visitor does, and capture screenshots plus a pass/fail report. Use to prove a change to pages, layouts, components, styles, MDX content, project entries, images, or Worker config before you call it done.
 ---
 
 # Verify scowalt.com
 
-The site is a personal landing page that runs as a Cloudflare Worker. Visitors only read pages and follow links. There are no forms, accounts, or stored data. The surface is the web UI, and every proof comes from a real browser that loads the real routes.
+The site is a personal landing page that Astro prerenders to static HTML. Cloudflare serves the files as the static assets of the `scowalt-com` Worker, which has no script. Visitors only read pages and follow links. There are no forms, accounts, or stored data. The surface is the web UI, and every proof comes from a real browser that loads the real routes.
 
 All commands run from the repository root. The helpers live in `.agents/skills/verify/scripts/`. `.claude/skills/verify` is a symlink to this directory.
 
@@ -22,7 +22,7 @@ All commands run from the repository root. The helpers live in `.agents/skills/v
 .agents/skills/verify/scripts/launch.sh preview
 ```
 
-`preview` is the default and the mode to use for proof. It runs `bun run build` and then `portless run --tailscale astro preview`. That command serves `dist/` in workerd with the production `wrangler.json`, which includes `run_worker_first` and the `404-page` fallback. `dev` runs `portless run --tailscale astro dev` and serves source changes with HMR, so use it to iterate. `dev` differs from production: Vite serves `public/` and the CSS and scripts, and pages send no CSP. Use `preview` for any claim about production behavior. `dev` works only while `run_worker_first` lists page routes and not `/*` (see [the Gotchas in the feature map](features/README.md#gotchas)).
+`preview` is the default and the mode to use for proof. It runs `bun run build` and then `wrangler dev` through `portless run --tailscale`. Wrangler serves `dist/` with the production `wrangler.toml`, so asset matching, trailing-slash redirects, `_headers`, and the `404-page` fallback behave as they do on Cloudflare. `dev` runs `portless run --tailscale astro dev` and serves source changes with HMR, so use it to iterate. `dev` differs from production: Vite serves `public/` and the CSS and scripts, and pages send no CSP. Use `preview` for any claim about production behavior.
 
 The script does these steps:
 
@@ -53,7 +53,7 @@ This check is read-only. Run it before driving, and again whenever something loo
 - `GET /` is not the home page.
 - The served mode does not match the launched mode. The check looks for `/@vite/client` in the HTML.
 - `dev` mode does not serve `/@vite/client` and `/images/me.webp`.
-- In `preview` mode, any file under `src/` or `public/`, `astro.config.mjs`, or `package.json` is newer than `dist/server/entry.mjs`. The build is stale, so launch again.
+- In `preview` mode, any file under `src/` or `public/`, `astro.config.mjs`, `package.json`, or `wrangler.toml` is newer than `dist/index.html`. The build is stale, so launch again.
 
 A tailnet URL that does not return 200 is only a warning, because the local URL still works. A 403 means `server.allowedHosts` in `astro.config.mjs` no longer allows the hostname in `PORTLESS_TAILSCALE_URL` (see [the Gotchas](features/README.md#gotchas)).
 
@@ -78,7 +78,7 @@ A content edit therefore changes what the driver expects. If the driver can't pa
 
 Every journey also fails on any browser console error, uncaught page error, or 4xx/5xx response. The only exceptions are the deliberate 404 navigations in `not-found` and `project-detail`.
 
-Journeys, one for each [feature map](features/README.md) entry: `home`, `projects`, `project-detail`, `working-with-me`, and `not-found`. Before you report a change as verified, drive every journey whose feature file lists a path that the change touches. A change to `Layout.astro`, `global.css`, `astro.config.mjs`, `wrangler.toml`, or `src/middleware.ts` affects every page, so run all journeys at both viewports.
+Journeys, one for each [feature map](features/README.md) entry: `home`, `projects`, `project-detail`, `working-with-me`, and `not-found`. Before you report a change as verified, drive every journey whose feature file lists a path that the change touches. A change to `Layout.astro`, `global.css`, `astro.config.mjs`, `wrangler.toml`, or `public/_headers` affects every page, so run all journeys at both viewports.
 
 Exit code `0` means every check passed. The output prints `PASS` or `FAIL` for each journey and lists each failed check with its detail.
 
@@ -91,7 +91,7 @@ Each run writes to `tmp/verify/runs/<UTC timestamp>-<viewport>/`. `tmp/` is giti
 
 Proof standards:
 
-- Drive the real route through the served Worker, and use `preview` for any claim about production behavior. Do not substitute `curl` or a test-only page.
+- Drive the real route through the served static assets, and use `preview` for any claim about production behavior. Do not substitute `curl` or a test-only page.
 - The driver's checks do not judge layout, so open the screenshots of the pages you changed and inspect them. A visual change counts as verified only after you have looked at it at both viewports.
 - Cite the run directory and the journeys you drove. If a journey fails for a reason you did not cause, report it and its check output. Do not edit the driver to make it pass.
 - `wrangler deploy --dry-run` and the production build prove packaging, not behavior. The deployed site is `https://scowalt.com`. Fetch it read-only if you need to compare, and never deploy from here.
@@ -102,7 +102,7 @@ Proof standards:
 .agents/skills/verify/scripts/cleanup.sh
 ```
 
-Cleanup kills only our tmux session, by name, which stops Portless, Astro, and workerd. It then waits until Portless drops the route and deletes `tmp/verify/server.env`. It keeps `tmp/verify/runs/`, `server.log`, and `build.log`. `dist/` is ordinary build output and is left in place. Never kill by process name (`pkill astro`, `pkill workerd`), because other projects on this machine run the same binaries. Run cleanup after every session, including failed launches and failed iterations.
+Cleanup kills only our tmux session, by name, which stops Portless and Astro or Wrangler. It then waits until Portless drops the route and deletes `tmp/verify/server.env`. It keeps `tmp/verify/runs/`, `server.log`, and `build.log`. `dist/` is ordinary build output and is left in place. Never kill by process name (`pkill astro`, `pkill workerd`), because other projects on this machine run the same binaries. Run cleanup after every session, including failed launches and failed iterations.
 
 ## Feature map
 

@@ -8,6 +8,16 @@ Pull request → GitHub Actions checks → protected merge to main
                                 Cloudflare build → scowalt-com Worker
 ```
 
+`scowalt-com` is an assets-only Worker. `wrangler.toml` has no `main` and no
+`run_worker_first`, so Cloudflare answers every request from the static files in
+`dist/` and never invokes Worker code. Static asset requests are free and do not
+count against the Workers request quota. Do not add a Worker script or
+`run_worker_first` unless a page needs request-time code.
+
+The Worker routes `scowalt.com/*` and `www.scowalt.com/*` are managed in the
+Cloudflare dashboard, not in `wrangler.toml` or OpenTofu. `wrangler deploy` leaves
+them in place because the configuration declares no routes.
+
 Cloudflare's direct Git integration is the sole deployment controller. Keep its
 production branch set to `main`. Do not enable a second deployment workflow in
 GitHub Actions.
@@ -15,7 +25,7 @@ GitHub Actions.
 The protected branch requires these credential-free Actions checks:
 
 - **Code Quality & Tests:** typechecking, linting and formatting.
-- **Worker Build:** build the Astro application and run Wrangler deployment
+- **Worker Build:** build the static site and run Wrangler deployment
   validation with `--dry-run`, without Cloudflare credentials.
 - **OpenTofu Validation:** formatting, backend-disabled initialization,
   validation and TFLint. This job never plans or applies infrastructure.

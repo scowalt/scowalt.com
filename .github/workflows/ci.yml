@@ -65,7 +65,7 @@ jobs:
         run: bun run build
 
       - name: Validate Worker deployment without credentials
-        run: bunx wrangler deploy --config dist/server/wrangler.json --dry-run
+        run: bunx wrangler deploy --dry-run
         env:
           WRANGLER_SEND_METRICS: 'false'
 

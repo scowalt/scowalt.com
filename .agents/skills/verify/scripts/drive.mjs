@@ -227,10 +227,15 @@ const journeys = {
 
     const missing = await goto('/projects/does-not-exist', { missing: true });
     check(
-      'unknown project slug ends on /404 with status 404',
-      new URL(page.url()).pathname === '/404' && missing?.status() === 404,
+      'unknown project slug serves the 404 page with status 404 in place',
+      new URL(page.url()).pathname === '/projects/does-not-exist' &&
+        missing?.status() === 404 &&
+        (
+          await page.getByRole('heading', { level: 1 }).textContent()
+        )?.trim() === '404',
       { url: page.url(), status: missing?.status() }
     );
+    await shot('unknown-slug');
   },
 
   async 'working-with-me'({ page, check, shot, goto }) {
@@ -377,7 +382,6 @@ for (const name of selected) {
   const goto = async (pathname, { missing = false } = {}) => {
     if (missing) {
       expected404.add(`${baseUrl}${pathname}`);
-      expected404.add(`${baseUrl}/404`);
     }
     return page.goto(`${baseUrl}${pathname}`, { waitUntil: 'load' });
   };
