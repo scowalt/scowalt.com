@@ -30,7 +30,7 @@ fi
 bunx playwright install --only-shell chromium >"$state_dir/playwright-install.log" 2>&1
 
 if [ "$mode" = preview ]; then
-  echo "building production Worker into dist/ (log: $state_dir/build.log)"
+  echo "building the static site into dist/ (log: $state_dir/build.log)"
   if ! bun run build >"$state_dir/build.log" 2>&1; then
     tail -40 "$state_dir/build.log" >&2
     exit 1
@@ -38,8 +38,12 @@ if [ "$mode" = preview ]; then
 fi
 
 : >"$log"
-tmux new-session -d -s "$session" -c "$root" \
-  bash -c 'portless run --tailscale astro "$1" 2>&1 | tee "$2"' launch "$mode" "$log"
+serve=(portless run --tailscale astro dev)
+if [ "$mode" = preview ]; then
+  serve=(portless run --tailscale bash -c 'exec wrangler dev --port "$PORT" --ip "$HOST"')
+fi
+tmux new-session -d -s "$session" -c "$root" -e WRANGLER_SEND_METRICS=false \
+  bash -c '"${@:2}" 2>&1 | tee "$1"' launch "$log" "${serve[@]}"
 
 url=""
 deadline=$((SECONDS + 120))

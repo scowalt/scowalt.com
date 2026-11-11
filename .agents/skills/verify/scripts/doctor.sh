@@ -62,12 +62,12 @@ if [ "$MODE" = dev ]; then
   if [ "$asset_codes" = '200 200 ' ]; then
     ok "dev server serves Vite modules and public/ assets"
   else
-    bad "dev server answers /@vite/client and /images/me.webp with $asset_codes; pages render without CSS, scripts, or images (see features/README.md Gotchas)"
+    bad "dev server answers /@vite/client and /images/me.webp with $asset_codes; pages render without CSS, scripts, or images"
   fi
 fi
 
 if [ "$MODE" = preview ]; then
-  newest_source="$(find "$root/src" "$root/public" "$root/astro.config.mjs" "$root/package.json" -type f -newer "$root/dist/server/entry.mjs" 2>/dev/null | head -1)"
+  newest_source="$(find "$root/src" "$root/public" "$root/astro.config.mjs" "$root/package.json" "$root/wrangler.toml" -type f -newer "$root/dist/index.html" 2>/dev/null | head -1)"
   if [ -n "$newest_source" ]; then
     bad "dist/ is older than $newest_source; preview serves a stale build, relaunch"
   else

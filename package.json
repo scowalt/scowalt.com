@@ -38,7 +38,6 @@
     "wrangler": "4.141.0"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "14.3.3",
     "@astrojs/markdown-satteri": "0.4.2",
     "@astrojs/mdx": "7.0.8",
     "@iconify-json/cib": "1.2.3",

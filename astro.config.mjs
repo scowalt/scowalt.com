@@ -1,5 +1,4 @@
-import { defineConfig, sessionDrivers } from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
+import { defineConfig } from 'astro/config';
 import { satteri, satteriHeadingIdsPlugin } from '@astrojs/markdown-satteri';
 import icon from 'astro-icon';
 import mdx from '@astrojs/mdx';
@@ -52,19 +51,16 @@ const headingAutolinksPlugin = {
 const { PORT, HOST, PORTLESS_TAILSCALE_URL } = process.env;
 
 export default defineConfig({
-  output: 'server',
+  output: 'static',
+  build: {
+    format: 'file',
+  },
   server: {
     ...(PORT && { port: Number(PORT) }),
     ...(HOST && { host: HOST }),
     allowedHosts: PORTLESS_TAILSCALE_URL
       ? [new URL(PORTLESS_TAILSCALE_URL).hostname]
       : [],
-  },
-  adapter: cloudflare({
-    imageService: { build: 'compile', runtime: 'passthrough' },
-  }),
-  session: {
-    driver: sessionDrivers.null(),
   },
   integrations: [icon(), mdx()],
   security: {

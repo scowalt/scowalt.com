@@ -1,6 +1,6 @@
 # scowalt.com
 
-This is an Astro site hosted on Cloudflare Workers that acts as my personal landing page / business card.
+This is a static Astro site, served as Cloudflare Workers static assets, that acts as my personal landing page / business card.
 
 ## License
 
@@ -24,7 +24,7 @@ No trademark or endorsement rights are granted.
 
 - Astro
 - Plain CSS with cascade layers
-- Cloudflare Workers
+- Cloudflare Workers static assets
 - Renovate
 
 ## Styling
@@ -47,7 +47,15 @@ desktop layouts.
 
 ## Deployment
 
-The site runs on **Cloudflare Workers**. GitHub Actions validates pull requests;
+Astro prerenders every page to HTML at build time (`output: 'static'`). The
+`scowalt-com` Worker has no script: it serves `dist/` as static assets, so no
+request runs Worker code or counts against the Workers request quota. Unknown
+paths get `dist/404.html` with status 404 through `not_found_handling`. The
+Content Security Policy ships as a `<meta http-equiv>` tag in each page, with
+hashes for every inline script and style that Astro emits. `public/_headers`
+marks the fingerprinted files under `/_astro/` as immutable.
+
+GitHub Actions validates pull requests;
 Cloudflare's Git integration builds and deploys production from protected `main`.
 Cloudflare is the sole deployment controller.
 
