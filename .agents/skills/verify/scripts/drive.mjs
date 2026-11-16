@@ -87,6 +87,18 @@ const journeys = {
       'portrait image loaded',
       await imageLoaded(page.getByRole('img', { name: 'Scott Walters' }))
     );
+    const iconHref = await page
+      .locator('link[rel="icon"]')
+      .getAttribute('href');
+    const icon = iconHref
+      ? await page.request.get(new URL(iconHref, page.url()).href)
+      : null;
+    check(
+      'favicon resolves to an SVG',
+      icon?.status() === 200 &&
+        icon.headers()['content-type']?.startsWith('image/svg+xml'),
+      { href: iconHref, status: icon?.status() }
+    );
 
     for (const link of links) {
       const anchor = page.getByRole('link', { name: link.text, exact: true });
