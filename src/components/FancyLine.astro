@@ -21,7 +21,8 @@ const isExternal = href.startsWith('http');
     rel={isExternal ? 'noopener noreferrer' : undefined}
     class="link"
   >
-    {iconName && <Icon name={iconName} class="icon" />}{buttonText}
+    {iconName && <Icon name={iconName} class="icon" />}
+    {buttonText}
   </a>
   <span>{last}</span>
 </div>

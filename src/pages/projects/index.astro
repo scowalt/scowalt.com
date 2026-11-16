@@ -12,19 +12,20 @@ projects.sort((a, b) => a.data.order - b.data.order);
   description="A selection of projects I've built: why I built them, how, and what I'm most proud of."
 >
   <main class="page-column">
-    <a href="/" class="back-link"> &larr; Home </a>
+    <a href="/" class="back-link">
+      {' '}
+      &larr; Home{' '}
+    </a>
     <h1 class="page-title">Projects</h1>
     <div class="project-list">
-      {
-        projects.map((project) => (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            screenshot={project.data.screenshot}
-            slug={project.id}
-          />
-        ))
-      }
+      {projects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          screenshot={project.data.screenshot}
+          slug={project.id}
+        />
+      ))}
     </div>
   </main>
 </Layout>

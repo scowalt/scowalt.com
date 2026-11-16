@@ -15,7 +15,10 @@ const { title, description, screenshot, techStack, url, repo } = Astro.props;
 
 <Layout title={`${title} - Scott Walters`} description={description}>
   <main class="page-column">
-    <a href="/projects" class="back-link"> &larr; Back to Projects </a>
+    <a href="/projects" class="back-link">
+      {' '}
+      &larr; Back to Projects{' '}
+    </a>
 
     <img
       src={`/images/projects/${screenshot}`}
@@ -24,35 +27,29 @@ const { title, description, screenshot, techStack, url, repo } = Astro.props;
     />
 
     <h1 class="page-title">
-      {
-        url ? (
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="title-link"
-          >
-            {title}
-          </a>
-        ) : (
-          title
-        )
-      }
+      {url ? (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="title-link"
+        >
+          {title}
+        </a>
+      ) : (
+        title
+      )}
     </h1>
 
-    <p class="tech-stack">
-      {techStack.join(' · ')}
-    </p>
+    <p class="tech-stack">{techStack.join(' · ')}</p>
 
-    {
-      repo && (
-        <div class="project-links">
-          <a href={repo} target="_blank" rel="noopener noreferrer">
-            Source Code &rarr;
-          </a>
-        </div>
-      )
-    }
+    {repo && (
+      <div class="project-links">
+        <a href={repo} target="_blank" rel="noopener noreferrer">
+          Source Code &rarr;
+        </a>
+      </div>
+    )}
 
     <div class="prose">
       <slot />
