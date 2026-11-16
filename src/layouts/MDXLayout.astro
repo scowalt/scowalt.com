@@ -12,7 +12,10 @@ const { frontmatter } = Astro.props;
 
 <Layout title={frontmatter.title}>
   <main class="page-column">
-    <a href="/" class="back-link"> &larr; Home </a>
+    <a href="/" class="back-link">
+      {' '}
+      &larr; Home{' '}
+    </a>
     <div class="prose">
       <slot />
     </div>

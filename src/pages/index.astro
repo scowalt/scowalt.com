@@ -61,17 +61,15 @@ const links = [
     <hr class="divider" />
 
     <div class="links">
-      {
-        links.map((link) => (
-          <FancyLine
-            first={link.first}
-            href={link.href}
-            iconName={link.iconName}
-            buttonText={link.buttonText}
-            last={link.last}
-          />
-        ))
-      }
+      {links.map((link) => (
+        <FancyLine
+          first={link.first}
+          href={link.href}
+          iconName={link.iconName}
+          buttonText={link.buttonText}
+          last={link.last}
+        />
+      ))}
     </div>
   </main>
 </Layout>
