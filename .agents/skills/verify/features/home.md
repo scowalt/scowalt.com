@@ -5,6 +5,7 @@ The landing page at `/` is a business card. It shows Scott's portrait, his name,
 ## Sub-features
 
 - `home-render`: the portrait image, the `Scott Walters` h1, and the tagline render with the title `Scott Walters`.
+- `home-favicon`: the `link rel="icon"` in the layout points to a file that the server returns with status 200 as `image/svg+xml`.
 - `home-links`: each entry in the `links` array of `src/pages/index.astro` renders once as a link with the same `href`.
 - `home-external`: links that start with `http` open in a new tab with `rel="noopener noreferrer"`.
 - `home-icons`: each link that has an `iconName` renders exactly one inline SVG icon.
@@ -22,7 +23,7 @@ Preconditions:
 
 - The site is launched in `preview` mode, and doctor passes.
 
-- **Open the page.** Visit `/`. Journey step `goto('/')`. The response is 200, the title is `Scott Walters`, and the h1 reads `Scott Walters`. The image named `Scott Walters` has `naturalWidth > 0`.
+- **Open the page.** Visit `/`. Journey step `goto('/')`. The response is 200, the title is `Scott Walters`, and the h1 reads `Scott Walters`. The image named `Scott Walters` has `naturalWidth > 0`. A request for the `href` of `link[rel="icon"]` returns 200 with an `image/svg+xml` content type.
 - **Read the link lines.** Find each link by its `buttonText` as the exact accessible name. Each name matches exactly one link, whose `href` equals the source. External links have `target="_blank"` and `rel` that contains `noopener`. Links with an icon contain one `svg`. Screenshot `home-01-home.png`.
 - **Follow Working With Me.** Choose `Working With Me`. The URL ends in `/working-with-me`, and the h1 contains `Working with Me`.
 - **Come back and follow Projects.** Use the browser's Back button, then choose `Projects`. The URL ends in `/projects`, and the h1 is `Projects`. Screenshot `home-02-home-to-projects.png`.
