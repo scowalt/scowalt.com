@@ -50,4 +50,5 @@ Each feature file starts with an H1 title and one paragraph that describes the b
 - [Projects index](./projects.md): the project cards in frontmatter order, card images, and the card-to-detail round trip.
 - [Project detail](./project-detail.md): every `/projects/<slug>` page with its screenshot, title link, tech stack, MDX body, and unknown-slug handling.
 - [Working with Me](./working-with-me.md): the MDX essay with heading section links, footnotes, and the way back home.
+- [bb Plugins](./bb-plugins.md): the hidden `/bb` list of bb plugins, its repo and fork-credit links, and its `noindex` tag.
 - [Not found](./not-found.md): the custom 404 page and its link back home.
