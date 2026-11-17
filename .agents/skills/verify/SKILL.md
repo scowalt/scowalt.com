@@ -78,7 +78,7 @@ A content edit therefore changes what the driver expects. If the driver can't pa
 
 Every journey also fails on any browser console error, uncaught page error, or 4xx/5xx response. The only exceptions are the deliberate 404 navigations in `not-found` and `project-detail`.
 
-Journeys, one for each [feature map](features/README.md) entry: `home`, `projects`, `project-detail`, `working-with-me`, and `not-found`. Before you report a change as verified, drive every journey whose feature file lists a path that the change touches. A change to `Layout.astro`, `global.css`, `astro.config.mjs`, `wrangler.toml`, or `public/_headers` affects every page, so run all journeys at both viewports.
+Journeys, one for each [feature map](features/README.md) entry: `home`, `projects`, `project-detail`, `working-with-me`, `bb-plugins`, and `not-found`. Before you report a change as verified, drive every journey whose feature file lists a path that the change touches. A change to `Layout.astro`, `global.css`, `astro.config.mjs`, `wrangler.toml`, or `public/_headers` affects every page, so run all journeys at both viewports.
 
 Exit code `0` means every check passed. The output prints `PASS` or `FAIL` for each journey and lists each failed check with its detail.
 

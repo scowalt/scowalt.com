@@ -1,0 +1,183 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const plugins = await getCollection('bbPlugins');
+plugins.sort((a, b) => a.data.order - b.data.order);
+const sections = [
+  {
+    heading: 'Built by me',
+    plugins: plugins.filter((p) => p.data.group === 'built'),
+  },
+  {
+    heading: 'Forks I run',
+    plugins: plugins.filter((p) => p.data.group === 'fork'),
+  },
+];
+---
+
+<Layout
+  title="bb Plugins - Scott Walters"
+  description="The bb plugins I've built and patched for my own agent setup."
+  noindex
+>
+  <main class="page-column">
+    <a href="/" class="back-link">
+      {' '}
+      &larr; Home{' '}
+    </a>
+    <h1 class="page-title">bb Plugins</h1>
+    <p class="intro">
+      The plugins I've built or patched for{' '}
+      <a href="https://getbb.app" target="_blank" rel="noopener noreferrer">
+        bb
+      </a>
+      , the agent IDE.
+    </p>
+    {sections.map((section) => (
+      <section class="section">
+        <h2 class="section-heading">{section.heading}</h2>
+        <ul class="plugin-list">
+          {section.plugins.map(({ id, data: plugin }) => (
+            <li>
+              <a
+                href={plugin.repo}
+                class="plugin"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={`/images/bb-plugins/${id}.svg`}
+                  alt=""
+                  width="72"
+                  height="72"
+                  class="plugin-art"
+                />
+                <div>
+                  <h3 class="plugin-name">{plugin.name}</h3>
+                  <p class="plugin-description">{plugin.description}</p>
+                </div>
+              </a>
+              {plugin.forkOf && (
+                <p class="fork-of">
+                  Fork of{' '}
+                  <a
+                    href={plugin.forkOf.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {plugin.forkOf.name}
+                  </a>
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </main>
+</Layout>
+
+<style>
+  @layer components {
+    .intro {
+      margin-top: var(--space-4);
+      color: var(--color-gray-400);
+    }
+
+    .intro a,
+    .fork-of a {
+      text-decoration-line: underline;
+    }
+
+    .section {
+      margin-top: var(--space-16);
+    }
+
+    .section-heading {
+      margin-bottom: var(--space-4);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-gray-500);
+    }
+
+    .plugin-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .plugin-list {
+      --art-size: 3.5rem;
+    }
+
+    .plugin {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      transition-property: background-color, color;
+      transition-timing-function: var(--ease-standard);
+      transition-duration: var(--duration-fast);
+    }
+
+    .plugin-name {
+      font-size: var(--text-xl);
+      line-height: var(--leading-xl);
+      font-weight: 600;
+      color: var(--color-white);
+    }
+
+    .plugin-description {
+      margin-top: var(--space-2);
+      color: var(--color-gray-400);
+    }
+
+    .fork-of {
+      margin-top: calc(-1 * var(--space-2));
+      padding: 0 var(--space-4) var(--space-4)
+        calc(var(--space-4) * 2 + var(--art-size));
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+    }
+
+    .plugin-art {
+      width: var(--art-size);
+      height: var(--art-size);
+      flex-shrink: 0;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .plugin-art {
+        transition: transform var(--duration-fast) var(--ease-standard);
+      }
+    }
+
+    @media (width >= 48rem) {
+      .plugin-list {
+        --art-size: 4.5rem;
+      }
+    }
+
+    @media (hover: hover) {
+      .plugin:hover .plugin-art {
+        transform: rotate(-4deg) scale(1.06);
+      }
+
+      .plugin:hover {
+        background-color: color-mix(
+          in oklab,
+          var(--color-white) 5%,
+          transparent
+        );
+      }
+
+      .plugin:hover .plugin-name {
+        color: rgb(var(--accent-light));
+      }
+    }
+  }
+</style>

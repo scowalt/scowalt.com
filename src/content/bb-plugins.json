@@ -1,0 +1,70 @@
+[
+  {
+    "id": "claude-accounts",
+    "name": "Claude Accounts",
+    "group": "built",
+    "order": 1,
+    "description": "Spreads Pi threads across several Claude subscriptions, picking the account with the most headroom and switching between turns when one runs low.",
+    "repo": "https://github.com/scowalt/bb-plugin-claude-accounts"
+  },
+  {
+    "id": "thread-resolved",
+    "name": "Thread Resolved",
+    "group": "built",
+    "order": 2,
+    "description": "Puts a checkmark on threads whose work is resolved or picked up by another thread, judged by a free OpenCode model.",
+    "repo": "https://github.com/scowalt/bb-plugin-thread-resolved"
+  },
+  {
+    "id": "usage-pace",
+    "name": "Usage Pace",
+    "group": "built",
+    "order": 3,
+    "description": "Shows whether the current burn rate lasts until each quota window resets, across multiple accounts, with Codex and Claude reset details.",
+    "repo": "https://github.com/scowalt/bb-plugin-usage-pace",
+    "forkOf": {
+      "name": "chug2k/bb-plugin-usage-pace",
+      "url": "https://github.com/chug2k/bb-plugin-usage-pace"
+    }
+  },
+  {
+    "id": "opencode-go",
+    "name": "OpenCode Go",
+    "group": "built",
+    "order": 4,
+    "description": "Writes thread titles and commit messages with an OpenCode Go subscription instead of Codex or bb cloud.",
+    "repo": "https://github.com/scowalt/bb-plugin-opencode-go"
+  },
+  {
+    "id": "todoist",
+    "name": "Todoist",
+    "group": "built",
+    "order": 5,
+    "description": "Lists today's and overdue Todoist tasks in bb, completes them, and drafts an agent thread from any task.",
+    "repo": "https://github.com/scowalt/bb-plugin-todoist"
+  },
+  {
+    "id": "bb-sidebar",
+    "name": "BB Sidebar",
+    "group": "fork",
+    "order": 6,
+    "description": "A thread sidebar with manual and automatic sorting, snooze, and settle. My patches snooze threads waiting on a scheduled wakeup and keep a parent unread while its subagents work.",
+    "repo": "https://github.com/scowalt/bb-sidebar",
+    "forkOf": {
+      "name": "yusuf8834/bb-sidebar",
+      "url": "https://github.com/yusuf8834/bb-sidebar"
+    }
+  },
+  {
+    "id": "magic-compose",
+    "name": "Magic Compose",
+    "group": "fork",
+    "order": 7,
+    "description": "Picks the project, machine, model, and reasoning level for a new thread as you type. My patch lets it run through OpenCode.",
+    "repo": "https://github.com/scowalt/sawyer-plugins/tree/main/plugins/magic-compose",
+    "forkOf": {
+      "name": "SawyerHood/sawyer-plugins",
+      "url": "https://github.com/SawyerHood/sawyer-plugins"
+    }
+  }
+]

@@ -61,6 +61,11 @@ const readProjects = async () => {
   return projects.sort((a, b) => a.order - b.order);
 };
 
+const readBbPlugins = async () =>
+  JSON.parse(
+    await readFile(path.join(root, 'src', 'content', 'bb-plugins.json'), 'utf8')
+  ).sort((a, b) => a.order - b.order);
+
 const imageLoaded = (locator) =>
   locator.evaluate((img) => img.complete && img.naturalWidth > 0);
 
@@ -291,6 +296,70 @@ const journeys = {
       );
     }
     await shot('working-with-me');
+    await page.getByRole('link', { name: '← Home' }).click();
+    await page.waitForURL((url) => url.pathname === '/');
+    check(
+      '← Home returns to the landing page',
+      (await page.getByRole('heading', { level: 1 }).textContent())?.trim() ===
+        'Scott Walters'
+    );
+  },
+
+  async 'bb-plugins'({ page, check, shot, goto }) {
+    const plugins = await readBbPlugins();
+    const response = await goto('/bb');
+    check('GET /bb is 200', response?.status() === 200, response?.status());
+    check(
+      'title',
+      (await page.title()) === 'bb Plugins - Scott Walters',
+      await page.title()
+    );
+    check(
+      'page asks search engines not to index it',
+      (await page.locator('meta[name="robots"]').getAttribute('content')) ===
+        'noindex'
+    );
+    const groups = ['built', 'fork'];
+    const shown = await page.locator('main h3').allTextContents();
+    const expected = groups.flatMap((group) =>
+      plugins.filter((p) => p.group === group).map((p) => p.name)
+    );
+    check(
+      'plugins listed by group in order',
+      JSON.stringify(shown.map((t) => t.trim())) === JSON.stringify(expected),
+      { shown, expected }
+    );
+    for (const plugin of plugins) {
+      const card = page.locator('a.plugin', { hasText: plugin.name });
+      check(
+        `${plugin.id} card links to its repo in a new tab`,
+        (await card.getAttribute('href')) === plugin.repo &&
+          (await card.getAttribute('target')) === '_blank' &&
+          (await card.getAttribute('rel'))?.includes('noopener')
+      );
+      check(
+        `${plugin.id} card art loaded`,
+        await imageLoaded(card.locator('img'))
+      );
+      if (plugin.forkOf) {
+        const upstream = page.getByRole('link', {
+          name: plugin.forkOf.name,
+          exact: true,
+        });
+        check(
+          `${plugin.id} credits ${plugin.forkOf.name}`,
+          (await upstream.getAttribute('href')) === plugin.forkOf.url
+        );
+      }
+    }
+    const home = await goto('/');
+    check(
+      'landing page does not link to /bb',
+      home?.status() === 200 &&
+        (await page.locator('a[href="/bb"]').count()) === 0
+    );
+    await goto('/bb');
+    await shot('bb-plugins');
     await page.getByRole('link', { name: '← Home' }).click();
     await page.waitForURL((url) => url.pathname === '/');
     check(

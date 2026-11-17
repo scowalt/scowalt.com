@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const projects = defineCollection({
@@ -16,4 +16,16 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+const bbPlugins = defineCollection({
+  loader: file('./src/content/bb-plugins.json'),
+  schema: z.object({
+    name: z.string(),
+    group: z.enum(['built', 'fork']),
+    order: z.number(),
+    description: z.string(),
+    repo: z.url(),
+    forkOf: z.object({ name: z.string(), url: z.url() }).optional(),
+  }),
+});
+
+export const collections = { projects, bbPlugins };
