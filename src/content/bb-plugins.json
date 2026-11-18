@@ -44,10 +44,18 @@
     "repo": "https://github.com/scowalt/bb-plugin-todoist"
   },
   {
+    "id": "next-prompt",
+    "name": "Next Prompt",
+    "group": "built",
+    "order": 6,
+    "description": "Suggests a few messages you might send next after each agent turn, written by an OpenCode Go model and shown as chips above the composer.",
+    "repo": "https://github.com/scowalt/bb-plugin-next-prompt"
+  },
+  {
     "id": "bb-sidebar",
     "name": "BB Sidebar",
     "group": "fork",
-    "order": 6,
+    "order": 7,
     "description": "A thread sidebar with manual and automatic sorting, snooze, and settle. My patches snooze threads waiting on a scheduled wakeup and keep a parent unread while its subagents work.",
     "repo": "https://github.com/scowalt/bb-sidebar",
     "forkOf": {
@@ -59,7 +67,7 @@
     "id": "magic-compose",
     "name": "Magic Compose",
     "group": "fork",
-    "order": 7,
+    "order": 8,
     "description": "Picks the project, machine, model, and reasoning level for a new thread as you type. My patch lets it run through OpenCode.",
     "repo": "https://github.com/scowalt/sawyer-plugins/tree/main/plugins/magic-compose",
     "forkOf": {
