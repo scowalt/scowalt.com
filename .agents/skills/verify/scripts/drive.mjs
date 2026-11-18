@@ -330,7 +330,9 @@ const journeys = {
       { shown, expected }
     );
     for (const plugin of plugins) {
-      const card = page.locator('a.plugin', { hasText: plugin.name });
+      const card = page.locator('a.plugin', {
+        has: page.getByRole('heading', { name: plugin.name, exact: true }),
+      });
       check(
         `${plugin.id} card links to its repo in a new tab`,
         (await card.getAttribute('href')) === plugin.repo &&
