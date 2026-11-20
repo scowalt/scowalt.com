@@ -10,6 +10,7 @@
     "astro": "bun x astro",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
+    "lint:content": "cspell lint --no-progress --no-summary 'src/**/*.mdx' && remark --frail --no-stdout 'src/**/*.mdx'",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "bunx astro check",
