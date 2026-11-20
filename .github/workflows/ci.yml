@@ -36,6 +36,9 @@ jobs:
       - name: Lint code
         run: bun run lint
 
+      - name: Lint content
+        run: bun run lint:content
+
       - name: Check formatting
         run: bun run format:check
 
