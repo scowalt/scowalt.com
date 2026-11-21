@@ -1,5 +1,12 @@
 # scowalt.com
 
+## Project write-ups
+
+Each project in `src/content/projects/` is written in Scott's voice.
+
+- **Why I Built This:** a short, casual, first-person paragraph. Write it the way a person talks, not like marketing copy or a feature list.
+- **How I Built It:** leave it out unless the build is novel or interesting. A Chrome extension or a CRUD app doesn't need one.
+
 # Instructions for the usage of Backlog.md CLI Tool
 
 ## Backlog.md: Comprehensive Project Management Tool via CLI
