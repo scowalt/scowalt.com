@@ -1,0 +1,28 @@
+---
+title: Sidedoor
+description: A Chrome extension that opens X, Reddit and Instagram links in privacy-friendly frontends, and always picks an instance that's actually up.
+screenshot: sidedoor.png
+techStack:
+  [
+    'JavaScript',
+    'Chrome Manifest V3',
+    'declarativeNetRequest',
+    'Playwright',
+    'GitHub Actions',
+  ]
+url: https://github.com/scowalt/sidedoor/releases/latest
+repo: https://github.com/scowalt/sidedoor
+order: 3
+---
+
+## Why I Built This
+
+X, Reddit and Instagram all push you toward logging in or opening their app before they'll show you a post. Open-source frontends like [Nitter](https://github.com/zedeus/nitter), [Redlib](https://github.com/redlib-org/redlib) and [Kittygram](https://codeberg.org/irelephant/kittygram) show the same content without that. The catch is that public instances come and go: on any given day, a good chunk of them are rate limited, suspended, or behind a bot check. A redirect that sends you to a dead instance isn't much better than no redirect. I wanted one that always lands somewhere that works.
+
+## How I Built It
+
+Sidedoor is a Manifest V3 Chrome extension in plain JavaScript with no build step. Redirects use Chrome's declarativeNetRequest rules, so Chrome rewrites the request before the original site ever loads. Pages the frontends can't show, like login and settings, are left alone. YouTube to [Invidious](https://github.com/iv-org/invidious) and Imgur to [Rimgo](https://codeberg.org/rimgo/rimgo) are there too, switched off by default.
+
+Every few hours it pulls [LibRedirect's](https://github.com/libredirect/instances) public instance list and health-checks each instance by loading a real profile or subreddit, not just the home page, since many instances serve their front page fine while every post is rate limited. Each instance comes back up, behind a bot check, or down, and "Auto" redirects to the fastest one that works. From the toolbar popup you can pin a specific instance, add your own, or open the current page on the original site for just that tab.
+
+Playwright tests load the extension in Chromium to confirm Chrome accepts every redirect rule, and a weekly GitHub Actions job runs real redirects against live instances. It's open source under the MIT license, and it's in review for the Chrome Web Store.
